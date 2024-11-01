@@ -1,4 +1,3 @@
-
 .servicios {
   display: flex;
   flex-direction: column;
@@ -11,9 +10,9 @@
 .servicios button {
   padding: 1.2rem 2rem;
   font-size: 1.1rem;
-  color: #00A8A0;
+  color: #00a8a0;
   background-color: #e6f4ea;
-  border: 2px solid #00A8A0;
+  border: 2px solid #00a8a0;
   border-radius: 20px;
   cursor: pointer;
   width: 350px; /* Aumenta el ancho de los botones */
@@ -23,6 +22,6 @@
 }
 
 .servicios button:hover {
-  background-color: #00A8A0;
+  background-color: #00a8a0;
   color: #ffffff;
 }

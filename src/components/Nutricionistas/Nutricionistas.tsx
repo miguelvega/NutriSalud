@@ -1,12 +1,12 @@
-import "../styles/Nutricionistas.css";
+import "./Nutricionistas.css";
 
 // Importamos las imágenes de los nutricionistas
-import nutricionista1 from "../assets/Nutricionista1.jpeg";
-import nutricionista2 from "../assets/Nutricionista2.jpeg";
-import nutricionista3 from "../assets/Nutricionista3.jpeg";
-import nutricionista4 from "../assets/Nutricionista4.jpeg";
+import nutricionista1 from "../../assets/Nutricionista1.jpeg";
+import nutricionista2 from "../../assets/Nutricionista2.jpeg";
+import nutricionista3 from "../../assets/Nutricionista3.jpeg";
+import nutricionista4 from "../../assets/Nutricionista4.jpeg";
 
-const Nutricionistas = () => {
+export const Nutricionistas = () => {
   // Array de imágenes de nutricionistas
   const nutricionistas = [
     nutricionista1,
@@ -30,5 +30,3 @@ const Nutricionistas = () => {
     </section>
   );
 };
-
-export default Nutricionistas;
