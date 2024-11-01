@@ -1,0 +1,99 @@
+/* src/styles/BannerPrincipal.css */
+
+.banner {
+  position: relative;
+  text-align: left;
+  padding: 30px 50px; /* Reduce un poco el padding vertical */
+  background-image: url('/diseño-web-para-nutricionistas.jpg'); /* Asegúrate de que la ruta de la imagen sea correcta */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  width: 100%;
+  max-width: 1200px; /* Limita el ancho máximo */
+  height: 400px; /* Ajusta la altura para hacer el banner más proporcionado */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto; /* Centra el banner en la página */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  border-radius: 10px; /* Redondea las esquinas */
+}
+
+.banner h1 {
+  font-size: 3.5em; /* Ajusta el tamaño de fuente */
+  font-weight: bold;
+  color: #32a89f; /* Color verde azulado */
+  margin: 0; /* Elimina márgenes */
+}
+
+.banner h1 span {
+  color: #000; /* Color negro para la segunda parte de "Salud" */
+}
+
+.banner p {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.banner button {
+  padding: 10px 20px;
+  font-size: 1em;
+  margin-top: 20px;
+  background-color: #32a89f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.banner button:hover {
+  background-color: #2a8e8b;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #32a89f;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5em;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.arrow-button:hover {
+  background-color: #2a8e8b;
+}
+
+.arrow-left {
+  left: 20px; /* Ajusta la posición izquierda */
+}
+
+.arrow-right {
+  right: 20px; /* Ajusta la posición derecha */
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  max-width: 1200px; /* Limita el ancho de la sección principal */
+  margin: 0 auto; /* Centra la sección en la página */
+  gap: 80px; /* Espacio entre componentes */
+  align-items: flex-start;
+}
+
+.nutricionistas-section {
+  margin-top: -10px;
+}
+
+.servicios {
+  margin-top: 20px;
+}

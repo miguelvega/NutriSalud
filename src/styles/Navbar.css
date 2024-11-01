@@ -1,0 +1,103 @@
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo más claro y semitransparente */
+  padding: 15px 30px; /* Mayor padding para darle más espacio */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap; /* Para que se adapte mejor en pantallas pequeñas */
+}
+
+.navbar-logo {
+  font-weight: bold;
+  color: #00A8A0;
+  font-size: 1.8em;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.navbar-logo span {
+  color: #333; /* Color negro para resaltar "Salud" */
+}
+
+.navbar-links {
+  display: flex;
+  flex: 1;
+  justify-content: center; /* Centrado de los links */
+  gap: 30px; /* Mayor separación entre links */
+  flex-wrap: wrap; /* Para que los links se ajusten en pantallas pequeñas */
+}
+
+.navbar-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 5px 10px; /* Espaciado adicional alrededor de los enlaces */
+}
+
+.navbar-links a:hover {
+  color: #00A8A0;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px; /* Espacio adicional entre botones */
+}
+
+.auth-buttons .login {
+  color: #00A8A0;
+  border: 1px solid #00A8A0;
+  background-color: transparent;
+  padding: 8px 20px;
+  border-radius: 20px; /* Botón redondeado */
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.auth-buttons .login:hover {
+  background-color: #00A8A0;
+  color: #fff;
+}
+
+.auth-buttons .signup {
+  background-color: #00A8A0;
+  color: #fff;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.auth-buttons .signup:hover {
+  background-color: #00796B;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    justify-content: flex-start;
+    gap: 15px; /* Reduce el espacio en pantallas pequeñas */
+    margin-top: 10px;
+  }
+
+  .auth-buttons {
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
