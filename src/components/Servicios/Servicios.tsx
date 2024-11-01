@@ -1,6 +1,6 @@
-import "../styles/Servicios.css";
+import "./Servicios.css";
 
-const Servicios = () => {
+export const Servicios = () => {
   return (
     <section className="servicios">
       <button>Dietas Personalizadas</button>
@@ -9,5 +9,3 @@ const Servicios = () => {
     </section>
   );
 };
-
-export default Servicios;

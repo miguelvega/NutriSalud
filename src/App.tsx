@@ -1,10 +1,11 @@
-// src/App.tsx
-import React from "react";
-import Navbar from "./components/Navbar";
-import BannerPrincipal from "./components/BannerPrincipal";
-import Nutricionistas from "./components/Nutricionistas";
-import Servicios from "./components/Servicios";
 import "./App.css";
+
+import {
+  BannerPrincipal,
+  Navbar,
+  Nutricionistas,
+  Servicios,
+} from "./components";
 
 function App() {
   return (

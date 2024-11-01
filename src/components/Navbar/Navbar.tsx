@@ -1,9 +1,13 @@
-import "../styles/Navbar.css";
+import "./Navbar.css";
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="navbar-logo">NutriSalud</div>
+      <div className="navbar-logo">
+        <h1 className="title">
+          Nutri<span>Salud</span>
+        </h1>
+      </div>
       <div className="navbar-links">
         <a href="#">Comienza</a>
         <a href="#">Nuestro Personal</a>
@@ -18,5 +22,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;
