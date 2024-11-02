@@ -5,6 +5,7 @@ import nutricionista1 from "../../assets/Nutricionista1.jpeg";
 import nutricionista2 from "../../assets/Nutricionista2.jpeg";
 import nutricionista3 from "../../assets/Nutricionista3.jpeg";
 import nutricionista4 from "../../assets/Nutricionista4.jpeg";
+import { NutricionistaCard } from "./components";
 
 export const Nutricionistas = () => {
   // Array de imágenes de nutricionistas
@@ -17,14 +18,16 @@ export const Nutricionistas = () => {
 
   return (
     <section className="nutricionistas-section">
-      <h2>Nuestros Nutricionistas</h2>
+      <h2 className="nutricionistas-title">Nuestros Nutricionistas</h2>
       <div className="nutricionistas-container">
         {nutricionistas.map((imagen, index) => (
-          <div key={index} className="nutricionista-card">
-            <img src={imagen} alt={`Nutricionista ${index + 1}`} />
-          </div>
+          <NutricionistaCard
+            name="nutricionista"
+            experience="2"
+            imgPath={imagen}
+            key={index}
+          />
         ))}
-        {/* Botón "Ver más" fuera de la lista de nutricionistas */}
         <button className="ver-mas-btn">Ver más</button>
       </div>
     </section>

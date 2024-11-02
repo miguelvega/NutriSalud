@@ -11,8 +11,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0 50px;
-  max-width: 1200px; /* Limita el ancho de la sección principal */
+  max-width: max-content; /* Limita el ancho de la sección principal */
   margin: 0 auto; /* Centra la sección en la página */
-  gap: 80px; /* Espacio entre componentes */
+  gap: 50px; /* Espacio entre componentes */
   align-items: flex-start;
+}
+
+.App {
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
 }
