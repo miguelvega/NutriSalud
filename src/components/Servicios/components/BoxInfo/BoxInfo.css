@@ -1,0 +1,44 @@
+.BoxInfo {
+  position: relative;
+  margin-top: 5px;
+}
+
+.TitleBoxInfo {
+  padding: 1.2rem 2rem;
+  font-size: 1.1rem;
+  color: #000;
+  background-color: #fff;
+  border: 2px solid #79cabe;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 350px;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.TitleBoxInfo:hover {
+  background-color: #00a8a0;
+  color: #ffffff;
+}
+
+.TextBoxInfo {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  color: #000;
+  border-radius: 10px;
+  padding-inline: 10px;
+  padding-block: 5px;
+  position: absolute;
+  min-width: 250px;
+  top: -50%;
+  left: 105%;
+  border: 1px dashed #00a8a0;
+}
+
+/* Mostrar .TextBoxInfo cuando se hace hover en .TitleBoxInfo */
+.TitleBoxInfo:hover + .TextBoxInfo {
+  visibility: visible;
+  opacity: 1;
+}
