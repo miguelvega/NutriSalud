@@ -1,0 +1,9 @@
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  max-width: max-content; /* Limita el ancho de la sección principal */
+  margin: 0 auto; /* Centra la sección en la página */
+  gap: 50px; /* Espacio entre componentes */
+  align-items: flex-start;
+}

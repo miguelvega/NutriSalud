@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Navbar.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isSubEnlacesVisible, setIsSubEnlacesVisible] = useState(false);
@@ -12,9 +13,11 @@ export const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <h1 className="title">
-          Nutri<span>Salud</span>
-        </h1>
+        <Link className="enlace-main" to="/">
+          <h1 className="title">
+            Nutri<span>Salud</span>
+          </h1>
+        </Link>
       </div>
       <div className="navbar-links">
         <button className="button-comienza" onClick={handleClickComienza}>
@@ -23,33 +26,37 @@ export const Navbar = () => {
         </button>
 
         <div className={`subEnlaces ${isSubEnlacesVisible ? "visible" : ""}`}>
-          <a className="enlace borde" href="#">
+          <Link className="enlace borde" to="/triaje-inicial">
             Triaje Inicial
-          </a>
-          <a className="enlace borde" href="#">
+          </Link>
+          <Link className="enlace borde" to="/generar-cita">
             Generar Cita{" "}
-          </a>
-          <a className="enlace" href="#">
+          </Link>
+          <Link className="enlace" to="/historial-medico">
             Historial Médico
-          </a>
+          </Link>
         </div>
 
-        <a className="enlace" href="#">
+        <Link className="enlace" to="/nuestro-personal">
           Nuestro Personal
-        </a>
-        <a className="enlace" href="#">
+        </Link>
+        <Link className="enlace" to="/citas">
           Citas
-        </a>
-        <a className="enlace" href="#">
+        </Link>
+        <Link className="enlace" to="/recomendaciones">
           Recomendaciones
-        </a>
-        <a className="enlace" href="#">
+        </Link>
+        <Link className="enlace" to="/preguntas-frecuentes">
           Preguntas Frecuentes
-        </a>
+        </Link>
       </div>
       <div className="auth-buttons">
-        <button className="login">Iniciar Sesión</button>
-        <button className="signup">Crea una cuenta</button>
+        <Link className="login" to="/login">
+          Iniciar Sesión
+        </Link>
+        <Link className="signup" to="/signup">
+          Crea una cuenta
+        </Link>
       </div>
     </nav>
   );
