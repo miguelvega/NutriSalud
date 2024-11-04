@@ -3,6 +3,7 @@ import "./App.css";
 
 import { Navbar } from "./components";
 import { Home, Login } from "./pages";
+import { TriajeInicial } from "./pages/TriajeInicial/TriajeInicial";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/triaje-inicial" element={<TriajeInicial />} />{" "}
+          {/* Nueva ruta */}
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,0 +1,25 @@
+.triaje-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.triaje-title {
+  font-size: 2rem;
+  color: #00a8a0;
+  text-align: center;
+  font-weight: 600;
+}
+
+.triaje-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  width: 100%;
+  flex-wrap: wrap;
+}
