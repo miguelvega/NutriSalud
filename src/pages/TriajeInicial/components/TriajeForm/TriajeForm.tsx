@@ -27,7 +27,7 @@ export const TriajeForm: React.FC<TriajeFormProps> = ({ onSubmit }) => {
         placeholder="Describe tus hábitos alimenticios aquí..."
       />
 
-      <label className="form-label">Se encanta comer :</label>
+      <label className="form-label">Me encanta comer :</label>
       <textarea
         className="input-textarea"
         rows={2}

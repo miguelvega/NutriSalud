@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./TriajeInicial.css";
 import { TriajeForm } from "./components/TriajeForm/TriajeForm";
 import { LoadingOverlay } from "./components/LoadingOverlay/LoadingOverlay";
@@ -6,13 +7,14 @@ import { TriajeImage } from "./components/TriajeImage/TriajeImage";
 
 export const TriajeInicial = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      alert("Reporte generado exitosamente.");
+      navigate("/resultado-triaje"); // Redirige a la vista de resultado
     }, 2000);
   };
 

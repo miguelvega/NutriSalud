@@ -4,6 +4,7 @@ import "./App.css";
 import { Navbar } from "./components";
 import { Home, Login } from "./pages";
 import { TriajeInicial } from "./pages/TriajeInicial/TriajeInicial";
+import { ResultadoTriaje } from "./pages/ResultadoTriaje/ResultadoTriaje"; // Nueva importación
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/triaje-inicial" element={<TriajeInicial />} />{" "}
+          <Route path="/triaje-inicial" element={<TriajeInicial />} />
+          <Route path="/resultado-triaje" element={<ResultadoTriaje />} />{" "}
           {/* Nueva ruta */}
         </Routes>
       </BrowserRouter>
