@@ -1,0 +1,23 @@
+.seccion-nutricionistas {
+  margin-bottom: 20px;
+}
+.label-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.label-desc h2 {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.label-desc p {
+  margin-top: -5px;
+  margin-left: 10px;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+.contenedor-nutricionistas {
+  display: flex;
+  gap: 10px;
+}

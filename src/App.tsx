@@ -2,10 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import { Navbar } from "./components";
-import { Home, Login } from "./pages";
-import { TriajeInicial } from "./pages/TriajeInicial/TriajeInicial";
-import { ResultadoTriaje } from "./pages/ResultadoTriaje/ResultadoTriaje"; // Nueva importación
-
+import {
+  GenerarCita,
+  Home,
+  Login,
+  ResultadoTriaje,
+  TriajeInicial,
+} from "./pages";
 function App() {
   return (
     <div className="App">
@@ -16,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/triaje-inicial" element={<TriajeInicial />} />
           <Route path="/resultado-triaje" element={<ResultadoTriaje />} />{" "}
+          <Route path="/generar-cita" element={<GenerarCita />} />
           {/* Nueva ruta */}
         </Routes>
       </BrowserRouter>

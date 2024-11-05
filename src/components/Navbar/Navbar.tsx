@@ -1,13 +1,18 @@
 import { useState } from "react";
 import "./Navbar.css";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isSubEnlacesVisible, setIsSubEnlacesVisible] = useState(false);
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
   const handleClickComienza = () => {
     setIsSubEnlacesVisible(!isSubEnlacesVisible);
+  };
+
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuVisible(!isMobileMenuVisible);
   };
 
   return (
@@ -18,25 +23,26 @@ export const Navbar = () => {
             Nutri<span>Salud</span>
           </h1>
         </Link>
+        <button className="mobile-menu-icon" onClick={handleMobileMenuToggle}>
+          {isMobileMenuVisible ? <MdClose /> : <MdMenu />}
+        </button>
       </div>
-      <div className="navbar-links">
+      <div className={`navbar-links ${isMobileMenuVisible ? "visible" : ""}`}>
         <button className="button-comienza" onClick={handleClickComienza}>
           Comienza
           <MdKeyboardArrowDown />
         </button>
-
         <div className={`subEnlaces ${isSubEnlacesVisible ? "visible" : ""}`}>
           <Link className="enlace borde" to="/triaje-inicial">
             Triaje Inicial
           </Link>
           <Link className="enlace borde" to="/generar-cita">
-            Generar Cita{" "}
+            Generar Cita
           </Link>
           <Link className="enlace" to="/historial-medico">
             Historial Médico
           </Link>
         </div>
-
         <Link className="enlace" to="/nuestro-personal">
           Nuestro Personal
         </Link>

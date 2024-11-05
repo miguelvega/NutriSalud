@@ -1,4 +1,4 @@
-import { BoxInfo } from "./components";
+import { BoxInfo } from "./components/BoxInfo/BoxInfo";
 import "./Servicios.css";
 
 export const Servicios = () => {

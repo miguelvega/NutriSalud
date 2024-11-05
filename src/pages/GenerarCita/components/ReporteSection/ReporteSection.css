@@ -1,0 +1,31 @@
+.seccion-reporte {
+  margin-bottom: 30px;
+}
+
+.input-archivo {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.reporte-generado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.buttons-reporte {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.boton-icono {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+}

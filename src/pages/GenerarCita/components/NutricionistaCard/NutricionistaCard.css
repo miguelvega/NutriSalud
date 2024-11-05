@@ -1,0 +1,46 @@
+.tarjeta-nutricionista {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  width: 150px;
+  height: 230px;
+}
+
+.avatar-nutricionista {
+  background-color: #f0f0f0;
+  height: 100px;
+  width: 115px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.nombre-nutricionista {
+  font-weight: bold;
+  border: 0.5px solid #555;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  text-wrap: pretty;
+}
+
+.informacion-nutricionista {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 10px;
+  color: #555;
+}
+
+.experiencia {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (min-width: 975px) {
+  .tarjeta-nutricionista {
+    width: 150px;
+    height: 210px;
+  }
+}
