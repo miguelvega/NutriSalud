@@ -15,7 +15,10 @@
   max-width: 100%;
   height: 60px;
   z-index: 2;
-  flex-wrap: wrap; /* Para que se adapte mejor en pantallas pequeñas */
+}
+
+.navbar-logo {
+  display: flex;
 }
 
 .navbar-logo .enlace-main {
@@ -34,8 +37,8 @@
 
 .navbar-links {
   display: flex;
-  flex: 1;
   justify-content: center; /* Centrado de los links */
+  align-items: center;
   gap: 30px; /* Mayor separación entre links */
   flex-wrap: wrap; /* Para que los links se ajusten en pantallas pequeñas */
 }
@@ -47,7 +50,7 @@
   color: #333;
   text-decoration: none;
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 700;
   transition: color 0.3s;
   padding: 5px 10px; /* Espaciado adicional alrededor de los enlaces */
 }
@@ -65,7 +68,7 @@
   text-decoration: none;
   font-size: 1em;
   border: none;
-  font-weight: bold;
+  font-weight: 700;
   transition: color 0.3s;
   padding: 5px 10px; /* Espaciado adicional alrededor de los enlaces */
 }

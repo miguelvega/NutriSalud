@@ -1,0 +1,13 @@
+.boton-generar-cita {
+  background-color: #00a8a0;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 150px;
+  min-width: 150px;
+}
