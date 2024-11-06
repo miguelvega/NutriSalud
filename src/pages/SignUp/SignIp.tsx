@@ -28,7 +28,6 @@ export const SignUp: React.FC<SignUpProps> = ({ onRoleChange }) => {
     console.log("Contraseña:", password);
     console.log("Rol: ", rol);
 
-    // Notify App to switch navbar if the role is Nutricionista
     onRoleChange(rol);
 
     if (rol === "Nutricionista") {
@@ -43,19 +42,53 @@ export const SignUp: React.FC<SignUpProps> = ({ onRoleChange }) => {
       <form onSubmit={handleSubmit}>
         <h2 className="title-signup">Registro</h2>
 
-        <Input label="Nombres" type="text" value={nombres} onChange={(e) => setNombres(e.target.value)} />
-        <Input label="Apellidos" type="text" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
-        <Input label="Correo Electrónico" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Input label="Teléfono" type="tel" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-        <Input label="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input
+          label="Nombres"
+          type="text"
+          value={nombres}
+          onChange={(e) => setNombres(e.target.value)}
+        />
+        <Input
+          label="Apellidos"
+          type="text"
+          value={apellidos}
+          onChange={(e) => setApellidos(e.target.value)}
+        />
+        <Input
+          label="Correo Electrónico"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          label="Teléfono"
+          type="tel"
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
+        />
+        <Input
+          label="Contraseña"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <label htmlFor="rol" className="label-rol">Rol</label>
-        <select id="rol" value={rol} onChange={(e) => setRol(e.target.value)} className="select-rol">
+        <label htmlFor="rol" className="label-rol">
+          Rol
+        </label>
+        <select
+          id="rol"
+          value={rol}
+          onChange={(e) => setRol(e.target.value)}
+          className="select-rol"
+        >
           <option value="Paciente">Paciente</option>
           <option value="Nutricionista">Nutricionista</option>
         </select>
 
-        <button type="submit" className="btn-submit">Crear Cuenta</button>
+        <button type="submit" className="btn-submit">
+          Crear Cuenta
+        </button>
       </form>
 
       <div className="img-signup">
