@@ -1,0 +1,91 @@
+/* Estilos generales para el contenedor de citas */
+.citas-container {
+  max-width: 80%; /* Limitar el ancho máximo */
+  margin: 0 auto; /* Centrar el contenedor */
+  padding: 20px;
+}
+
+/* Estilos para el título principal */
+.citas-title {
+  text-align: center; /* Centrar el texto */
+  font-size: 24px; /* Tamaño de fuente del título */
+  color: #333; /* Color del texto */
+  margin-bottom: 20px; /* Espacio inferior */
+}
+
+/* Estilos para la sección de citas */
+.citas-seccion {
+  margin-top: 20px; /* Espacio superior */
+}
+
+/* Estilos para subtítulos */
+.citas-subtitle {
+  font-size: 20px; /* Tamaño de fuente para el subtítulo */
+  color: #000; /* Color del subtítulo */
+  margin-bottom: 15px; /* Espacio inferior */
+}
+
+/* Estilos para la tabla */
+.citas-table {
+  width: 100%; /* Ancho completo de la tabla */
+  border-collapse: collapse; /* Colapsar bordes de la tabla */
+}
+
+/* Estilos para los encabezados de la tabla */
+.table-header {
+  background-color: #faf7f7; /* Fondo verde para encabezados */
+  color: #000; /* Texto blanco */
+  padding: 12px; /* Espacio interno en celdas */
+  text-align: center; /* Alinear texto a la izquierda */
+  font-weight: bold; /* Negrita para encabezados */
+  width: 300px;
+}
+
+/* Estilos para las celdas de la tabla */
+.citas-table td {
+  padding: 10px; /* Espacio interno en celdas */
+  border-bottom: 1px solid #ddd; /* Línea de separación inferior */
+}
+
+/* Espaciado en el hover de filas */
+.cita-row:hover {
+  background-color: #f0f0f0; /* Fondo gris claro en hover */
+}
+
+/* Clases de estado para badges */
+.status-badge {
+  padding: 4px 8px; /* Espaciado interno en el badge */
+  border-radius: 12px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño de fuente */
+  text-align: center; /* Centrar texto */
+}
+
+/* Estilos para la sección de acciones en la tabla */
+.cita-delete {
+  text-align: center; /* Centrar el contenido del botón */
+}
+
+/* Estilo para el botón de eliminar */
+.delete-button {
+  background: none; /* Sin fondo */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambiar cursor a puntero */
+  padding: 8px; /* Espacio interno */
+  transition: transform 0.3s ease; /* Transición suave en hover */
+}
+
+.delete-button:hover {
+  transform: scale(1.1); /* Aumentar tamaño al pasar el mouse */
+}
+
+/* Accesibilidad */
+.sr-only {
+  position: absolute; /* Ocultar visualmente */
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0); /* Esconder en el flujo visual */
+  border: 0; /* Sin borde */
+}

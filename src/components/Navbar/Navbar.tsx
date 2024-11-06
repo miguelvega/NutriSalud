@@ -33,13 +33,25 @@ export const Navbar = () => {
           <MdKeyboardArrowDown />
         </button>
         <div className={`subEnlaces ${isSubEnlacesVisible ? "visible" : ""}`}>
-          <Link className="enlace borde" to="/triaje-inicial">
+          <Link
+            className="enlace borde"
+            to="/triaje-inicial"
+            onClick={handleClickComienza}
+          >
             Triaje Inicial
           </Link>
-          <Link className="enlace borde" to="/generar-cita">
+          <Link
+            className="enlace borde"
+            to="/generar-cita"
+            onClick={handleClickComienza}
+          >
             Generar Cita
           </Link>
-          <Link className="enlace" to="/historial-medico">
+          <Link
+            className="enlace"
+            to="/historial-medico"
+            onClick={handleClickComienza}
+          >
             Historial Médico
           </Link>
         </div>
