@@ -1,0 +1,118 @@
+/* Estilos generales para la fila de la cita */
+.cita-row {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.cita-row:hover {
+  background-color: #f9f9f9;
+}
+
+/* Estilos para las celdas */
+.cita-id,
+.cita-fecha-hora,
+.cita-nutricionista,
+.cita-estado {
+  padding: 8px;
+  text-align: center;
+}
+
+.cita-id {
+  font-weight: bold;
+}
+
+/* Estilos para el estado de la cita */
+.cita-estado .status-badge {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.status-badge {
+  color: #4dcb00;
+  background-color: #e8f6c8; /* verde por defecto */
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+/* Colores de estado */
+.status-badge.pending {
+  background-color: #dba759; /* Naranja para 'Pendiente' */
+  color: #e9961a;
+}
+
+.status-badge.completed {
+  background-color: #e8f6c8; /* Verde para 'Completada' */
+  color: #4dcb00;
+}
+
+.status-badge.cancelled {
+  background-color: #f9b3b3; /* Rojo para 'Cancelada' */
+  color: #cb0000;
+}
+
+/* Estilos para el botón de eliminar */
+.cita-delete {
+  text-align: center;
+}
+
+.delete-button {
+  background-color: #f31313;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
+}
+
+.delete-button:focus {
+  outline: none;
+}
+
+/* Icono de eliminar */
+.delete-button svg {
+  color: #fff; /* Rojo para el icono */
+  font-size: 18px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cancel-button,
+.accept-button {
+  margin: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #cce5ff;
+  color: #007bff;
+}
+
+.accept-button {
+  background-color: #79cabe;
+  color: #fff;
+}
