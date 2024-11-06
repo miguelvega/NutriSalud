@@ -1,0 +1,96 @@
+.citaspendientes-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  text-align: center;
+}
+
+.citas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.citas-table th, .citas-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.citas-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.estado {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.estado.listo {
+  background-color: #79CABE;
+  color: white;
+}
+
+.estado.espera {
+  background-color: yellow;
+  color: black;
+}
+
+.delete-button {
+  background-color: #F31313;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d60f0f;
+}
+
+.confirm-dialog {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.confirm-button {
+  background-color: #F31313;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #79CABE;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.highlighted {
+  outline: 2px solid #00796b;
+}
+
+.back-button {
+  background-color: #79CABE;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.highlighted-row {
+  border: 2px solid blue;
+}

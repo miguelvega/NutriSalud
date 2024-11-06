@@ -57,15 +57,15 @@ export const RowCita = ({
         </td>
       </tr>
 
-      {showModal && (
+            {showModal && (
         <div className="modal-overlay">
           <div className="modal">
             <p>¿Quieres cancelar la cita?</p>
-            <button className="cancel-button" onClick={handleCancelDelete}>
-              Cancelar
-            </button>
             <button className="accept-button" onClick={handleConfirmDelete}>
               Aceptar
+            </button>
+            <button className="cancel-button" onClick={handleCancelDelete}>
+              Cancelar
             </button>
           </div>
         </div>

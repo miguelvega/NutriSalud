@@ -1,0 +1,154 @@
+.gestion-citas-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #00a8a0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.options label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.selectors-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.selectors-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+select,
+input[type="number"] {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.day-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.day-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.day-button.selected {
+    background-color: #00a8a0;
+    color: #fff;
+}
+
+.interval-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-interval-button,
+.delete-interval-button {
+    padding: 10px 30px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    position: fixed;
+    bottom: 40px;
+}
+
+.add-interval-button {
+    background-color: #00a8a0;
+    right: 20px;
+}
+
+.add-interval-button:hover {
+    background-color: #66b3a7;
+}
+
+.delete-interval-button {
+    background-color: #F31313;
+    right: 150px;
+}
+
+.delete-interval-button:hover {
+    background-color: #d60f0f;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.time-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.day-label {
+    font-weight: bold;
+    color: #00a8a0;
+    margin-bottom: 10px;
+}
+
+.time-slot {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background-color: #e0e0e0;
+    margin: 4px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.time-slot.filled {
+    background-color: #00a8a0;
+    color: #fff;
+    font-weight: bold;
+}
+
+.time-slot.out-of-month {
+    background-color: #d3d3d3;
+    color: #888;
+    pointer-events: none;
+}
+
+.day-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.time-slot.highlighted {
+    border: 2px solid #00a8a0;
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.6);
+    background-color: #c8e6c9;
+    transition: 0.1s;
+}
