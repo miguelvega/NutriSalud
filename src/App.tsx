@@ -14,6 +14,9 @@ import {
   GenerarCita,
   Home,
   Login,
+  NuestroPersonal,
+  PreguntasFrecuentes,
+  Recomendaciones,
   ResultadoTriaje,
   SignUp,
   TriajeInicial,
@@ -33,15 +36,27 @@ function App() {
         {/* Conditionally render Navbar or Navbarnutri */}
         {isNutricionista ? <Navbarnutri /> : <Navbar />}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={isNutricionista ? <InicioMedico /> : <Home />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/triaje-inicial" element={<TriajeInicial />} />
           <Route path="/resultado-triaje" element={<ResultadoTriaje />} />
           <Route path="/generar-cita" element={<GenerarCita />} />
           <Route path="/citas" element={<Citas />} />
-          <Route path="/signup" element={<SignUp onRoleChange={handleRoleChange} />} />
+          <Route path="/nuestro-personal" element={<NuestroPersonal />} />
+          <Route path="/recomendaciones" element={<Recomendaciones />} />
+          <Route
+            path="/preguntas-frecuentes"
+            element={<PreguntasFrecuentes />}
+          />
+
+          <Route
+            path="/signup"
+            element={<SignUp onRoleChange={handleRoleChange} />}
+          />
           {/* medico routes */}
-          <Route path="/inicio-medico" element={<InicioMedico />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/gestion-citas" element={<Gestioncitas />} />
           <Route path="/citas-pendientes" element={<Citaspendientes />} />
