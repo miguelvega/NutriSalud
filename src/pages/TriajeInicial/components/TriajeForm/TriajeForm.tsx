@@ -52,13 +52,14 @@ export const TriajeForm: React.FC<TriajeFormProps> = ({ onSubmit }) => {
             <input type="checkbox" name="objetivo" value="ganar_masa" /> Ganar
             masa muscular
           </label>
-          <label className="form-label">Otro:</label>
-          <textarea
-            className="input-textarea"
-            rows={2}
-            placeholder="Especifica otros objetivos..."
-          />
         </div>
+
+        <label className="form-label">Otro:</label>
+        <textarea
+          className="input-textarea"
+          rows={2}
+          placeholder="Especifica otros objetivos..."
+        />
       </div>
 
       <button type="submit" className="submit-button">

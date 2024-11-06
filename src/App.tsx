@@ -39,7 +39,10 @@ function App() {
           <Route path="/resultado-triaje" element={<ResultadoTriaje />} />
           <Route path="/generar-cita" element={<GenerarCita />} />
           <Route path="/citas" element={<Citas />} />
-          <Route path="/signup" element={<SignUp onRoleChange={handleRoleChange} />} />
+          <Route
+            path="/signup"
+            element={<SignUp onRoleChange={handleRoleChange} />}
+          />
           {/* medico routes */}
           <Route path="/inicio-medico" element={<InicioMedico />} />
           <Route path="/chatbot" element={<Chatbot />} />

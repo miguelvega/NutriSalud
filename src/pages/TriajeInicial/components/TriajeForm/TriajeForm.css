@@ -14,6 +14,7 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 5px;
+  text-align: left; /* Alinea el texto a la izquierda */
 }
 
 .input-file,
@@ -40,11 +41,32 @@
   margin-top: 10px;
 }
 
+.objetivos-especificos label {
+  font-weight: bold;
+  color: #333;
+  text-align: left; /* Alinea las etiquetas a la izquierda */
+}
+
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 8px;
   margin-left: 10px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+textarea.input-textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
 }
 
 .submit-button {
