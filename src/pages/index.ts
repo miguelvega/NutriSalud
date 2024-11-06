@@ -4,3 +4,4 @@ export * from "./ResultadoTriaje/ResultadoTriaje";
 export * from "./TriajeInicial/TriajeInicial";
 export * from "./GenerarCita/GenerarCita";
 export * from "./Citas/Citas";
+export * from "./SignUp/SignIp";
