@@ -1,0 +1,54 @@
+/* Contenedor del input */
+.box-input {
+  margin-bottom: 20px; /* Espacio entre inputs */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Estilo del label */
+.label-input {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Espacio entre el label y el input */
+  color: #333;
+}
+
+/* Estilo base para el input */
+.input-base {
+  width: 100%; /* Para que el input ocupe todo el ancho disponible */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño del input */
+  transition: border-color 0.3s ease; /* Transición suave para el cambio de color en el borde */
+}
+
+/* Estilo cuando el input está enfocado */
+.input-base:focus {
+  border-color: #0066cc;
+  outline: none; /* Elimina el borde de enfoque predeterminado */
+}
+
+/* Estilo de error (si necesitas manejar errores, como campos vacíos) */
+.input-base.error {
+  border-color: red;
+}
+
+/* Estilo para el contenedor si el input tiene error */
+.box-input.error .label-input {
+  color: red;
+}
+
+/* Estilo para el contenedor de éxito */
+.box-input.success .label-input {
+  color: green;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 600px) {
+  .input-base {
+    font-size: 14px;
+  }
+}
