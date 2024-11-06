@@ -8,6 +8,7 @@ import {
   Home,
   Login,
   ResultadoTriaje,
+  SignUp,
   TriajeInicial,
 } from "./pages";
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/resultado-triaje" element={<ResultadoTriaje />} />{" "}
           <Route path="/generar-cita" element={<GenerarCita />} />
           <Route path="/citas" element={<Citas />} />
+          <Route path="/signup" element={<SignUp />} />
           {/* Nueva ruta */}
         </Routes>
         {/* <Chatbot /> */}
