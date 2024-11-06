@@ -19,6 +19,9 @@ export const Navbar = () => {
     if (isMobileMenuVisible) {
       setIsMobileMenuVisible(!isMobileMenuVisible);
     }
+    if (isSubEnlacesVisible) {
+      setIsSubEnlacesVisible(!isSubEnlacesVisible);
+    }
   };
 
   return (
