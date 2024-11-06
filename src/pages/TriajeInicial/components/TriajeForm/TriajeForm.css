@@ -1,66 +1,65 @@
 .triaje-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-label {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .input-file,
-  .input-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .input-file:hover,
-  .input-textarea:hover {
-    border-color: #00a8a0;
-  }
-  
-  .input-textarea:focus {
-    border-color: #00a8a0;
-    box-shadow: 0px 0px 5px rgba(0, 168, 160, 0.5);
-  }
-  
-  .objetivos-especificos {
-    margin-top: 10px;
-  }
-  
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 10px;
-  }
-  
-  .submit-button {
-    background-color: #00a8a0;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-top: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .submit-button:hover {
-    background-color: #00796b;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 40px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input-file,
+.input-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-file:hover,
+.input-textarea:hover {
+  border-color: #00a8a0;
+}
+
+.input-textarea:focus {
+  border-color: #00a8a0;
+  box-shadow: 0px 0px 5px rgba(0, 168, 160, 0.5);
+}
+
+.objetivos-especificos {
+  margin-top: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.submit-button {
+  background-color: #00a8a0;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background-color: #00796b;
+}
