@@ -98,6 +98,19 @@
   text-align: center;
 }
 
+/* Accept button styled in red */
+.accept-button {
+  background-color: #f31313; /* Red background */
+  color: white; /* White text */
+}
+
+/* Cancel button styled in green */
+.cancel-button {
+  background-color: #79cabe; /* Green background */
+  color: white; /* White text */
+}
+
+/* Optional: Adjust margins to space the buttons nicely */
 .cancel-button,
 .accept-button {
   margin: 10px;
@@ -105,14 +118,5 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.cancel-button {
-  background-color: #cce5ff;
-  color: #007bff;
-}
-
-.accept-button {
-  background-color: #79cabe;
-  color: #fff;
+  font-weight: bold;
 }
