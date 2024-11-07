@@ -39,7 +39,12 @@
 
 .mobile-menu-icon {
   background-color: transparent;
+  color: #000;
   border: none;
+}
+
+.mobile-menu-icon:hover {
+  background-color: #cac6c6;
 }
 
 .navbar-links {

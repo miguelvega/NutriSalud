@@ -28,6 +28,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onRoleChange }) => {
     console.log("Contraseña:", password);
     console.log("Rol: ", rol);
 
+    // Notify App to switch navbar if the role is Nutricionista
     onRoleChange(rol);
 
     if (rol === "Nutricionista") {

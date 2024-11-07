@@ -1,5 +1,5 @@
-import React from 'react';
-import './ConfirmDialog.css';
+import React from "react";
+import "./ConfirmDialog.css";
 
 type ConfirmDialogProps = {
   message: string;
@@ -8,7 +8,12 @@ type ConfirmDialogProps = {
   show: boolean;
 };
 
-const ConfirmDialog: React.FC<ConfirmDialogProps> = ({ message, onConfirm, onCancel, show }) => {
+const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
+  message,
+  onConfirm,
+  onCancel,
+  show,
+}) => {
   if (!show) return null;
 
   return (
@@ -16,8 +21,12 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({ message, onConfirm, onCan
       <div className="confirm-dialog">
         <p>{message}</p>
         <div className="dialog-buttons">
-          <button className="confirm-button" onClick={onConfirm}>Aceptar</button>
-          <button className="cancel-button" onClick={onCancel}>Cancelar</button>
+          <button className="confirm-button" onClick={onConfirm}>
+            Aceptar
+          </button>
+          <button className="cancel-button" onClick={onCancel}>
+            Cancelar
+          </button>
         </div>
       </div>
     </div>

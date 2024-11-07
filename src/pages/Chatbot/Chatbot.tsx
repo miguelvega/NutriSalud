@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import './Chatbot.css';
-import fondochatbot from '../../assets/fondochatbot.png';
-import imagenchatbot from '../../assets/imagenchatbot.png';
+import { useState } from "react";
+import "./Chatbot.css";
+import fondochatbot from "../../assets/fondochatbot.png";
+import imagenchatbot from "../../assets/imagenchatbot.png";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState<string[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleSend = () => {
     if (input.trim()) {
       setMessages([...messages, input]);
-      setInput('');
+      setInput("");
       // Aquí puedes agregar la lógica para la API del chatbot
     }
   };
@@ -24,11 +24,14 @@ const Chatbot = () => {
       <div className="chat-window">
         <div className="messages">
           {messages.map((msg, index) => (
-            <p key={index} className="user-message">{msg}</p>
+            <p key={index} className="user-message">
+              {msg}
+            </p>
           ))}
         </div>
         <div className="input-section">
           <input
+            className="input-chatbot"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -39,7 +42,11 @@ const Chatbot = () => {
       </div>
       <img src={fondochatbot} alt="Fondo Chatbot" className="fondo-chatbot" />
       <button onClick={handleReset} className="reset-chat">
-        <img src={imagenchatbot} alt="Reiniciar Chat" className="imagen-chatbot" />
+        <img
+          src={imagenchatbot}
+          alt="Reiniciar Chat"
+          className="imagen-chatbot"
+        />
       </button>
     </div>
   );

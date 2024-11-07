@@ -5,19 +5,17 @@
     height: 100vh;
     background-color: #ffffff;
     padding: 0 50px;
-}
-
-
-.fondo-chatbot {
+  }
+  
+  .fondo-chatbot {
     width: 550px;
     height: auto;
     position: relative;
     left: -140px;
     top: -20px;
     margin-bottom: 30px;
-
-}
-.chat-window {
+  }
+  .chat-window {
     width: 900px;
     height: 650px;
     background-color: #e0e0e0;
@@ -27,37 +25,37 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.messages {
+  }
+  
+  .messages {
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 20px;
-}
-
-.user-message {
+  }
+  
+  .user-message {
     background-color: #ffffff;
     padding: 10px;
     border-radius: 10px;
     margin: 5px 0;
     color: #333;
-}
-
-.input-section {
+  }
+  
+  .input-section {
     display: flex;
     gap: 10px;
-}
-
-input[type="text"] {
+  }
+  
+  .input-chatbot {
     flex-grow: 1;
     padding: 10px;
     border-radius: 10px;
     border: none;
     outline: none;
     font-size: 1em;
-}
-
-button {
+  }
+  
+  button {
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
@@ -66,13 +64,13 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-button:hover {
+  }
+  
+  button:hover {
     background-color: #c1c1c1;
-}
-
-.reset-chat {
+  }
+  
+  .reset-chat {
     position: fixed;
     bottom: 80px;
     right: 80px;
@@ -85,11 +83,9 @@ button:hover {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.imagen-chatbot {
+  }
+  
+  .imagen-chatbot {
     width: 80px;
     height: 80px;
-}
-
-
+  }
