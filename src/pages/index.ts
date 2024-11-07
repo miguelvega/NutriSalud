@@ -10,3 +10,6 @@ export * from "./InicioMedico/InicioMedico";
 export * from "./Chatbot/Chatbot";
 export * from "./Gestioncitas/Gestioncitas";
 export * from "./Citaspendientes/Citaspendientes";
+export * from "./NuestroPersonal/NuestroPersonal";
+export * from "./PreguntasFrecuentes/PreguntasFrecuentes";
+export * from "./Recomendaciones/Recomendaciones";

@@ -11,7 +11,9 @@ const ErrorModal: React.FC<ErrorModalProps> = ({ message, onClose }) => {
     <div className="error-modal-overlay">
       <div className="error-modal">
         <p>{message}</p>
-        <button onClick={onClose} className="error-modal-button">Aceptar</button>
+        <button onClick={onClose} className="error-modal-button">
+          Aceptar
+        </button>
       </div>
     </div>
   );

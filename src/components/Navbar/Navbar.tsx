@@ -95,7 +95,6 @@ export const Navbar = () => {
           isMobileMenuVisible ? "visible" : "hidden"
         }`}
       >
-        {/* 320px top */}
         <button className="button-comienza" onClick={handleClickComienza}>
           Comienza
           <MdKeyboardArrowDown />
