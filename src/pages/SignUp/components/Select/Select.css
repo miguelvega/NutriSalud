@@ -1,0 +1,13 @@
+.form-group {
+  margin-bottom: 20px; /* Espacio entre inputs */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-signup {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Espacio entre el label y el input */
+  color: #333;
+}

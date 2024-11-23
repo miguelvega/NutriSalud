@@ -1,6 +1,7 @@
 .BoxInfo {
-  position: relative;
-  margin-top: 5px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
 }
 
 .TitleBoxInfo {
@@ -30,15 +31,10 @@
   border-radius: 10px;
   padding-inline: 10px;
   padding-block: 5px;
-  position: absolute;
-  min-width: 250px;
-  top: -50%;
-  left: 105%;
   border: 1px dashed #00a8a0;
 }
 
-/* Mostrar .TextBoxInfo cuando se hace hover en .TitleBoxInfo */
 .TitleBoxInfo:hover + .TextBoxInfo {
-  visibility: visible;
   opacity: 1;
+  visibility: visible;
 }

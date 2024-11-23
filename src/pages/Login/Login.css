@@ -1,33 +1,11 @@
 .container-login {
   width: 100%;
   margin-right: 50px;
-}
-
-.title-login {
-  color: #79cabe;
-  font-weight: 800;
-  margin-bottom: 40px;
+  margin-top: 20vh;
 }
 
 .img-login {
   display: none;
-}
-
-form {
-  text-align: center;
-  margin: 0 30px;
-}
-
-.btn-submit {
-  background-color: #79cabe;
-  color: #fff;
-  height: 42px;
-  border: none;
-  margin-top: 60px;
-  border-radius: 5px;
-  width: 87px;
-  font-size: 14px;
-  padding: 10px 15px;
 }
 
 @media (min-width: 1200px) {
@@ -38,7 +16,7 @@ form {
   .container-login {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+    margin-top: 10rem;
     gap: 90px;
   }
 

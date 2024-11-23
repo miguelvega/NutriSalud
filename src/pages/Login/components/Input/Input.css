@@ -1,0 +1,42 @@
+.form-group {
+  margin-bottom: 20px; /* Espacio entre inputs */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-login {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Espacio entre el label y el input */
+  color: #333;
+}
+
+.form-control {
+  width: 100%; /* Para que el input ocupe todo el ancho disponible */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño del input */
+  transition: border-color 0.3s ease; /* Transición suave para el cambio de color en el borde */
+}
+
+.form-control:focus {
+  border-color: #0066cc;
+  outline: none; /* Elimina el borde de enfoque predeterminado */
+}
+
+.form-control.is-invalid {
+  border-color: #bd3737;
+}
+
+.error {
+  color: #bd3737;
+}
+
+@media (max-width: 600px) {
+  .form-control {
+    font-size: 14px;
+  }
+}
