@@ -52,10 +52,7 @@ function App() {
             element={<PreguntasFrecuentes />}
           />
 
-          <Route
-            path="/signup"
-            element={<SignUp onRoleChange={handleRoleChange} />}
-          />
+          <Route path="/signup" element={<SignUp />} />
           {/* medico routes */}
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/gestion-citas" element={<Gestioncitas />} />

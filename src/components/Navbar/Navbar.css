@@ -13,6 +13,7 @@
   position: sticky;
   top: 0;
   max-width: 100%;
+  margin-top: 10px;
   height: 60px;
   z-index: 2;
 }
@@ -44,7 +45,7 @@
 }
 
 .mobile-menu-icon:hover {
-  background-color: #cac6c6;
+  background-color: #f1f1f1;
 }
 
 .navbar-links {
@@ -59,11 +60,10 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  top: 80px;
-  height: max-content;
+  top: 70px;
   z-index: 1000;
   width: 300px;
-
+  padding-left: 10px;
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -99,6 +99,7 @@
 
 .button-comienza:hover {
   color: #00a8a0;
+  background-color: #f1f1f1;
 }
 
 .auth-buttons {
@@ -154,11 +155,10 @@
   border-radius: 10px;
   display: flex;
   flex-direction: row;
-  position: absolute;
-  top: 90%;
   border: 1px dashed #000;
-  left: 20%;
   z-index: 1000;
+  position: absolute;
+  top: 50px;
 }
 
 .subEnlaces.visible .borde {

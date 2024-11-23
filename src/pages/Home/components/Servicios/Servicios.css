@@ -1,8 +1,7 @@
 .servicios {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  margin-top: 60px; /* Aumenta el margen superior */
-  padding: 20px; /* Añade padding para aumentar el tamaño */
+  display: grid;
+  grid-template-columns: 3 1fr;
+  gap: 40px;
+  margin: 10px 40px;
+  margin-top: 50px;
 }

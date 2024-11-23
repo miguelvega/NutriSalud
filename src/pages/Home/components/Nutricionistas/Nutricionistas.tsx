@@ -6,15 +6,22 @@ import nutricionista2 from "../../../../assets/Nutricionista2.jpeg";
 import nutricionista3 from "../../../../assets/Nutricionista3.jpeg";
 import nutricionista4 from "../../../../assets/Nutricionista4.jpeg";
 import { NutricionistaCard } from "./components/NutricionistaCard/NutricionistaCard";
+import { useNavigate } from "react-router-dom";
 
 export const Nutricionistas = () => {
+  const navigate = useNavigate();
   // Array de imágenes de nutricionistas
   const nutricionistas = [
     nutricionista1,
     nutricionista2,
     nutricionista3,
     nutricionista4,
+    nutricionista1,
   ];
+
+  const handleClick = () => {
+    navigate("/nuestro-personal");
+  };
 
   return (
     <section className="nutricionistas-section">
@@ -28,7 +35,9 @@ export const Nutricionistas = () => {
             key={index}
           />
         ))}
-        <button className="ver-mas-btn">Ver más</button>
+        <button className="ver-mas-btn" onClick={handleClick}>
+          Ver más
+        </button>
       </div>
     </section>
   );
