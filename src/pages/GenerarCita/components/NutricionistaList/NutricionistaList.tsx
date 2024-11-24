@@ -1,21 +1,27 @@
 import { NutricionistaCard } from "../NutricionistaCard/NutricionistaCard";
 import "./NutricionistaList.css";
-export const NutricionistaList = () => (
-  <div className="seccion-nutricionistas">
-    <div className="label-desc">
-      <h2>Seleccione un nutricionista:</h2>
-      <p>Nutricionistas disponibles</p>
-    </div>
 
-    <div className="contenedor-nutricionistas">
-      {[
-        "Luis Perez Ruiz",
-        "Maria Ramos C.",
-        "Nicole Gonzales",
-        "Gonzalo Ramirez",
-      ].map((nombre, index) => (
-        <NutricionistaCard key={index} nombre={nombre} />
-      ))}
-    </div>
-  </div>
-);
+type Props = {
+  setSelectedNutritionist: (id: string) => void;
+};
+
+const nutritionists = [
+  { id: "1", name: "Luis Perez Ruiz", experience: "5 años" },
+  { id: "2", name: "Maria Ramos C.", experience: "8 años" },
+  { id: "3", name: "Nicole Gonzales", experience: "3 años" },
+  { id: "4", name: "Gonzalo Ramirez", experience: "10 años" },
+];
+
+
+export const NutricionistaList = ({setSelectedNutritionist}: Props) => {
+  const settings: Slider.Settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
+  return (
+
+  )
+};

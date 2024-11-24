@@ -23,7 +23,7 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     // verificar con el json obtenido del backend para determinar el rol
-    const userRole = "nutricionista"; // o paciente
+    const userRole = "paciente"; // o paciente
     login({ role: userRole });
     console.log(data);
     if (userRole.match("paciente")) {

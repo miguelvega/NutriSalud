@@ -9,25 +9,13 @@
   max-width: 100%;
   height: 60px;
   z-index: 2;
+  justify-content: space-between;
 }
 
 .navbarnutri-section {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.navbarnutri-section:first-child {
-  justify-content: flex-start;
-}
-
-.navbarnutri-section:nth-child(2) {
-  justify-content: center;
-}
-
-.navbarnutri-section:last-child {
-  justify-content: flex-end;
 }
 
 .enlace-main {
