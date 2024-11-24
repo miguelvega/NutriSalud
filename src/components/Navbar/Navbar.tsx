@@ -2,17 +2,24 @@ import { useState } from "react";
 import "./Navbar.css";
 import { MdKeyboardArrowDown, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { GoChevronDown } from "react-icons/go";
+import { useAuth } from "../../context";
 
 export const Navbar = () => {
+  const { isLoggedIn, logout } = useAuth(); // se podria usar para limitar algo mas y en el provider tambien obtener el nombre de los usuarios seria bueno
   const [isSubEnlacesVisible, setIsSubEnlacesVisible] = useState(false);
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
-
+  const [isProfileOptionsVisible, setIsProfileOptionsVisible] = useState(false);
   const handleClickComienza = () => {
     setIsSubEnlacesVisible(!isSubEnlacesVisible);
   };
 
   const handleMobileMenuToggle = () => {
     setIsMobileMenuVisible(!isMobileMenuVisible);
+  };
+
+  const handleProfileOptionsToggle = () => {
+    setIsProfileOptionsVisible(!isProfileOptionsVisible);
   };
 
   const handleClick = () => {
@@ -80,13 +87,25 @@ export const Navbar = () => {
             Preguntas Frecuentes
           </Link>
         </div>
-        <div className="auth-buttons">
-          <Link className="login" to="/login">
-            Iniciar Sesión
+        <div className="profile-buttons">
+          <p className="rol-name">Paciente</p>
+          <GoChevronDown
+            size={24}
+            style={{ fontWeight: "bold" }}
+            onClick={handleProfileOptionsToggle}
+          />
+        </div>
+        <div
+          className={`options-profile ${
+            isProfileOptionsVisible ? "visible" : "hidden"
+          }`}
+        >
+          <Link className="manageAccount" to="/manage-account">
+            Manage Account
           </Link>
-          <Link className="signup" to="/signup">
-            Crea una cuenta
-          </Link>
+          <button className="logOut" onClick={logout}>
+            Log Out
+          </button>
         </div>
       </nav>
 
