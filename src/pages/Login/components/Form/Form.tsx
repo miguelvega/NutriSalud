@@ -3,9 +3,12 @@ import { FormValues, schema } from "../../model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input/Input";
 import "./Form.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context";
 
 const Form = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -19,7 +22,11 @@ const Form = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    // verificar con el json obtenido del backend para determinar el rol
+    const userRole = "paciente"; // o paciente
+    login({ role: userRole });
     console.log(data);
+    navigate("/");
   };
 
   return (

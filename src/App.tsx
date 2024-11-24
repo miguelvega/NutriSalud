@@ -1,11 +1,25 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
 import { Navbar } from "./components";
 import { Navbarnutri } from "./components/Navbarnutri/Navbarnutri";
 import InicioMedico from "./pages/InicioMedico/InicioMedico";
-import { Home, Login, SignUp } from "./pages";
+import {
+  Citas,
+  GenerarCita,
+  Home,
+  Login,
+  NuestroPersonal,
+  PreguntasFrecuentes,
+  Recomendaciones,
+  ResultadoTriaje,
+  SignUp,
+  TriajeInicial,
+} from "./pages";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider, useAuth } from "./context";
+import Chatbot from "./pages/Chatbot/Chatbot";
+import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
+import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
 
 function App() {
   const Layout = () => {
@@ -14,6 +28,8 @@ function App() {
       <>
         {/* Mostrar Navbar según el rol */}
         {userRole === "nutricionista" ? <Navbarnutri /> : <Navbar />}
+        {/* Renderizar rutas anidadas */}
+        <Outlet />
       </>
     );
   };
@@ -30,6 +46,19 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/inicio-medico" element={<InicioMedico />} />
+              <Route path="/triaje-inicial" element={<TriajeInicial />} />
+              <Route path="/resultado-triaje" element={<ResultadoTriaje />} />
+              <Route path="/generar-cita" element={<GenerarCita />} />
+              <Route path="/citas" element={<Citas />} />
+              <Route path="/nuestro-personal" element={<NuestroPersonal />} />
+              <Route path="/recomendaciones" element={<Recomendaciones />} />
+              <Route
+                path="/preguntas-frecuentes"
+                element={<PreguntasFrecuentes />}
+              />
+              <Route path="/chatbot" element={<Chatbot />} />
+              <Route path="/gestion-citas" element={<Gestioncitas />} />
+              <Route path="/citas-pendientes" element={<Citaspendientes />} />
             </Route>
           </Route>
         </Routes>
