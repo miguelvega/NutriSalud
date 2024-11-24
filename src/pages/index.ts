@@ -4,7 +4,7 @@ export * from "./ResultadoTriaje/ResultadoTriaje";
 export * from "./TriajeInicial/TriajeInicial";
 export * from "./GenerarCita/GenerarCita";
 export * from "./Citas/Citas";
-export * from "./SignUp/SignIp";
+export * from "./SignUp/SignUp";
 //para el medico
 export * from "./InicioMedico/InicioMedico";
 export * from "./Chatbot/Chatbot";
