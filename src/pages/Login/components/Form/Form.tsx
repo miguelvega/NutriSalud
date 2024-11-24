@@ -3,6 +3,7 @@ import { FormValues, schema } from "../../model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input/Input";
 import "./Form.css";
+import { Link } from "react-router-dom";
 
 const Form = () => {
   const {
@@ -22,7 +23,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="form-login">
       <h1 className="title-login">Iniciar Sesión</h1>
       <Input
         name="email"
@@ -40,9 +41,14 @@ const Form = () => {
         error={errors.password}
       />
 
-      <button className="btn-submit" type="submit">
-        Ingresar
-      </button>
+      <div className="box-bottom">
+        <button className="btn-submit-login" type="submit">
+          Ingresar
+        </button>
+        <Link to="/signup" className="link-signup">
+          Crear Cuenta
+        </Link>
+      </div>
     </form>
   );
 };

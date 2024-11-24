@@ -8,6 +8,15 @@
   display: none;
 }
 
+.main-title-login {
+  text-align: center;
+  font-size: 56px;
+}
+
+.main-title-login span {
+  color: #00a8a0;
+}
+
 @media (min-width: 1200px) {
   .img-login {
     display: block;
@@ -18,9 +27,5 @@
     grid-template-columns: 1fr 1fr;
     margin-top: 10rem;
     gap: 90px;
-  }
-
-  form {
-    margin-left: 80px;
   }
 }
