@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input/Input";
 import "./Form.css";
 import Select from "../Select/Select";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const {
@@ -24,12 +25,16 @@ const Form = () => {
     },
   });
 
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
+    // despues de crear la cuenta debe ir a login para iniciar sesión
+    navigate("/login");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="form-signup">
       <h1 className="title-signup">Crear Cuenta</h1>
       <Input
         name="name"
@@ -82,7 +87,7 @@ const Form = () => {
         error={errors.confirmPassword}
       />
 
-      <button type="submit" className="btn-submit">
+      <button type="submit" className="btn-submit-signup">
         Crear Cuenta
       </button>
     </form>
