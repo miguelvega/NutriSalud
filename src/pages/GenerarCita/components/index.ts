@@ -4,3 +4,4 @@ export * from "./NutricionistaCard/NutricionistaCard";
 export * from "./NutricionistaList/NutricionistaList";
 export * from "./ReporteSection/ReporteSection";
 export * from "./LoadingComponent/LoadingComponent";
+export * from "./Form/Form";
