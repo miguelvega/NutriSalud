@@ -1,23 +1,56 @@
-.seccion-nutricionistas {
-  margin-bottom: 20px;
-}
-.label-desc {
+.carousel-container {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.label-desc h2 {
-  margin-top: 5px;
-  margin-bottom: 0px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 500px;
+  margin: auto;
 }
 
-.label-desc p {
-  margin-top: -5px;
-  margin-left: 10px;
-  font-size: 10px;
-  margin-bottom: 10px;
+.carousel {
+  overflow: hidden; /* Oculta las tarjetas fuera del contenedor */
+  width: 250px; /* Ajusta según el tamaño de las tarjetas */
 }
-.contenedor-nutricionistas {
+
+.carousel-track {
   display: flex;
-  gap: 10px;
+  transition: transform 0.5s ease-in-out; /* Animación suave para el movimiento */
+}
+
+.carousel-item {
+  min-width: 250px; /* Debe coincidir con el ancho especificado en el contenedor */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item:hover {
+  opacity: 1;
+}
+
+.carousel-button {
+  background-color: #79cabe;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  font-size: 18px;
+  margin: 0 10px;
+}
+
+.carousel-button:hover {
+  background-color: #00a8a0;
+}
+
+.carousel-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }

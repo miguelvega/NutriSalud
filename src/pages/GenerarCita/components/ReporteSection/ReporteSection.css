@@ -1,31 +1,86 @@
+/* Estilo principal del componente */
 .seccion-reporte {
   margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Ocultar el input de archivo */
 .input-archivo {
   display: none;
-  margin-bottom: 10px;
 }
 
+/* Descripción del reporte */
+.label-desc h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.label-desc p {
+  margin: 5px 0 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Contenedor del reporte generado */
 .reporte-generado {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   padding: 10px;
   border-radius: 8px;
+  background-color: #fff;
 }
 
+/* Botones */
 .buttons-reporte {
   display: flex;
-  gap: 2px;
+  gap: 8px;
   align-items: center;
 }
 
 .boton-icono {
-  background: none;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  margin-left: 5px;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.boton-icono:hover {
+  background-color: #f0f0f0;
+}
+
+.boton-ver {
+  color: #4caf50; /* Verde */
+}
+
+.boton-reload {
+  color: #ff9800; /* Naranja */
+}
+
+/* Etiqueta de subida */
+.upload-label {
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.upload-label:hover {
+  color: #0056b3;
+}
+
+/* Estilo para errores */
+.error {
+  font-size: 12px;
+  color: #e53935; /* Rojo */
+  margin-top: 5px;
 }
