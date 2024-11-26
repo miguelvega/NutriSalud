@@ -13,6 +13,7 @@
   position: sticky;
   top: 0;
   max-width: 100%;
+  margin-top: 10px;
   height: 60px;
   z-index: 2;
 }
@@ -44,7 +45,7 @@
 }
 
 .mobile-menu-icon:hover {
-  background-color: #cac6c6;
+  background-color: #f1f1f1;
 }
 
 .navbar-links {
@@ -59,11 +60,10 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  top: 80px;
-  height: max-content;
+  top: 70px;
   z-index: 1000;
   width: 300px;
-
+  padding-left: 10px;
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -99,44 +99,72 @@
 
 .button-comienza:hover {
   color: #00a8a0;
+  background-color: #f1f1f1;
 }
 
-.auth-buttons {
+.profile-buttons {
   display: flex;
-  gap: 15px; /* Espacio adicional entre botones */
+  gap: 12px;
+  align-items: center;
+  border: dashed 1px #00a8a0;
+  border-radius: 15px;
+  padding: 5px 15px;
+  height: 40px;
 }
 
-.auth-buttons .login {
-  color: #00a8a0;
-  border: 1px solid #00a8a0;
-  background-color: transparent;
-  padding: 8px 20px;
-  border-radius: 20px; /* Botón redondeado */
-  cursor: pointer;
-  font-size: 0.9em;
-  text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
+.rol-name {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.auth-buttons .login:hover {
-  background-color: #00796b;
+.profile-buttons:hover {
   color: #fff;
-}
-
-.auth-buttons .signup {
   background-color: #00a8a0;
-  color: #fff;
-  text-decoration: none;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.3s;
 }
 
-.auth-buttons .signup:hover {
-  background-color: #00796b;
+.options-profile.hidden {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.options-profile.visible {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  z-index: 10000;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 5px 10px;
+  border: dashed 1px #00a8a0;
+}
+
+.logOut {
+  background-color: transparent;
+  color: #000;
+  padding: 5px 2px;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logOut:hover {
+  background-color: transparent;
+  color: #00a8a0;
+}
+
+.manageAccount {
+  border-bottom: dashed 1px #00a8a0;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.manageAccount:hover {
+  color: #00a8a0;
 }
 
 .subEnlaces {
@@ -154,11 +182,10 @@
   border-radius: 10px;
   display: flex;
   flex-direction: row;
-  position: absolute;
-  top: 90%;
   border: 1px dashed #000;
-  left: 20%;
   z-index: 1000;
+  position: absolute;
+  top: 50px;
 }
 
 .subEnlaces.visible .borde {

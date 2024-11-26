@@ -1,0 +1,32 @@
+.title-signup {
+  color: #00a8a0;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+.form-signup {
+  text-align: center;
+  margin: 0 30px;
+  margin-bottom: 20px;
+}
+
+.btn-submit-signup {
+  background-color: #79cabe;
+  color: #fff;
+  height: 42px;
+  border: none;
+  margin-top: 60px;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+
+.btn-submit-signup:hover {
+  background-color: #00a8a0;
+}
+
+@media (min-width: 1200px) {
+  form {
+    margin-left: 80px;
+  }
+}

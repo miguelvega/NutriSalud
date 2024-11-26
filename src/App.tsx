@@ -1,14 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
-import "./App.css";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
 import { Navbar } from "./components";
 import { Navbarnutri } from "./components/Navbarnutri/Navbarnutri";
 import InicioMedico from "./pages/InicioMedico/InicioMedico";
-import Chatbot from "./pages/Chatbot/Chatbot";
-import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
-import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
-
 import {
   Citas,
   GenerarCita,
@@ -21,48 +15,55 @@ import {
   SignUp,
   TriajeInicial,
 } from "./pages";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { AuthProvider, useAuth } from "./context";
+import Chatbot from "./pages/Chatbot/Chatbot";
+import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
+import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
 
 function App() {
-  const [isNutricionista, setIsNutricionista] = useState(false);
-
-  // Function to update navbar based on user role
-  const handleRoleChange = (role: string) => {
-    setIsNutricionista(role === "Nutricionista");
+  const Layout = () => {
+    const { userRole } = useAuth();
+    return (
+      <>
+        {/* Mostrar Navbar según el rol */}
+        {userRole === "nutricionista" ? <Navbarnutri /> : <Navbar />}
+        {/* Renderizar rutas anidadas */}
+        <Outlet />
+      </>
+    );
   };
 
   return (
-    <div className="App">
+    <AuthProvider>
       <BrowserRouter>
-        {/* Conditionally render Navbar or Navbarnutri */}
-        {isNutricionista ? <Navbarnutri /> : <Navbar />}
         <Routes>
-          <Route
-            path="/"
-            element={isNutricionista ? <InicioMedico /> : <Home />}
-          />
           <Route path="/login" element={<Login />} />
-          <Route path="/triaje-inicial" element={<TriajeInicial />} />
-          <Route path="/resultado-triaje" element={<ResultadoTriaje />} />
-          <Route path="/generar-cita" element={<GenerarCita />} />
-          <Route path="/citas" element={<Citas />} />
-          <Route path="/nuestro-personal" element={<NuestroPersonal />} />
-          <Route path="/recomendaciones" element={<Recomendaciones />} />
-          <Route
-            path="/preguntas-frecuentes"
-            element={<PreguntasFrecuentes />}
-          />
+          <Route path="/signup" element={<SignUp />} />
 
-          <Route
-            path="/signup"
-            element={<SignUp onRoleChange={handleRoleChange} />}
-          />
-          {/* medico routes */}
-          <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/gestion-citas" element={<Gestioncitas />} />
-          <Route path="/citas-pendientes" element={<Citaspendientes />} />
+          {/* Rutas protegidas */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/inicio-medico" element={<InicioMedico />} />
+              <Route path="/triaje-inicial" element={<TriajeInicial />} />
+              <Route path="/resultado-triaje" element={<ResultadoTriaje />} />
+              <Route path="/generar-cita" element={<GenerarCita />} />
+              <Route path="/citas" element={<Citas />} />
+              <Route path="/nuestro-personal" element={<NuestroPersonal />} />
+              <Route path="/recomendaciones" element={<Recomendaciones />} />
+              <Route
+                path="/preguntas-frecuentes"
+                element={<PreguntasFrecuentes />}
+              />
+              <Route path="/chatbot" element={<Chatbot />} />
+              <Route path="/gestion-citas" element={<Gestioncitas />} />
+              <Route path="/citas-pendientes" element={<Citaspendientes />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </AuthProvider>
   );
 }
 
