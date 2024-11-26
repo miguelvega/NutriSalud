@@ -99,6 +99,7 @@ const Form = () => {
             min={0.1}
             max={3}
             step={0.01}
+            //@ts-ignore
             error={errors?.talla}
           />
 
@@ -110,6 +111,7 @@ const Form = () => {
             min={1}
             max={200}
             step={0.1}
+            //@ts-ignore
             error={errors?.peso}
           />
         </>
@@ -125,6 +127,7 @@ const Form = () => {
             min={0}
             max={50}
             step={1}
+            //@ts-ignore
             error={errors?.experiencia}
           />
         </>
