@@ -13,3 +13,4 @@ export * from "./Citaspendientes/Citaspendientes";
 export * from "./NuestroPersonal/NuestroPersonal";
 export * from "./PreguntasFrecuentes/PreguntasFrecuentes";
 export * from "./Recomendaciones/Recomendaciones";
+export * from "./HistorialMedico/HistorialMedico";
