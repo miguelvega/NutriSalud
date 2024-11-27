@@ -1,0 +1,32 @@
+.voice-recognition-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.voice-recognition-error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+.voice-recognition-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.voice-recognition-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.voice-recognition-button-active {
+  background-color: #45a049;
+}

@@ -9,11 +9,11 @@ export const TriajeInicial = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (data: any) => {
     setLoading(true);
     // comunicarse con backend para generar la cita falta esa lógica
     setTimeout(() => {
+      console.log(data);
       setLoading(false);
       navigate("/resultado-triaje"); // Redirige a la vista de resultado
     }, 2000);

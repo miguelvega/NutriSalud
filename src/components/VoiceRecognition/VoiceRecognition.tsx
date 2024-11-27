@@ -46,7 +46,7 @@ export const VoiceRecognition = ({ onVoiceInput }: VoiceRecognitionProps) => {
 
     const SpeechRecognition = (window as any).webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
-    recognition.lang = "es-ES";
+    recognition.lang = "es-ES"; // Configurar a español
     recognition.continuous = false;
     recognition.interimResults = false;
 
@@ -65,49 +65,20 @@ export const VoiceRecognition = ({ onVoiceInput }: VoiceRecognitionProps) => {
   };
 
   return (
-    <div style={styles.container}>
+    <div className="voice-recognition-container">
       {error ? (
-        <p style={styles.error}>{error}</p>
+        <p className="voice-recognition-error">{error}</p>
       ) : (
-        <>
-          <button
-            style={isListening ? styles.buttonActive : styles.button}
-            onClick={startListening}
-            disabled={isListening}
-          >
-            {isListening ? "Escuchando..." : "Hablar"}
-          </button>
-        </>
+        <button
+          className={`voice-recognition-button ${
+            isListening ? "voice-recognition-button-active" : ""
+          }`}
+          onClick={startListening}
+          disabled={isListening}
+        >
+          {isListening ? "Escuchando..." : "Hablar"}
+        </button>
       )}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column" as const,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "20px",
-  },
-  button: {
-    padding: "10px 20px",
-    backgroundColor: "#007BFF",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  buttonActive: {
-    padding: "10px 20px",
-    backgroundColor: "#FF6347",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "not-allowed",
-  },
-  error: {
-    color: "red",
-  },
 };

@@ -6,6 +6,7 @@ import InicioMedico from "./pages/InicioMedico/InicioMedico";
 import {
   Citas,
   GenerarCita,
+  HistorialMedico,
   Home,
   Login,
   NuestroPersonal,
@@ -51,6 +52,7 @@ function App() {
               <Route path="/generar-cita" element={<GenerarCita />} />
               <Route path="/citas" element={<Citas />} />
               <Route path="/nuestro-personal" element={<NuestroPersonal />} />
+              <Route path="/historial-medico" element={<HistorialMedico />} />
               <Route path="/recomendaciones" element={<Recomendaciones />} />
               <Route
                 path="/preguntas-frecuentes"

@@ -1,17 +1,27 @@
 import { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import "./Chatbot.css";
-import fondochatbot from "../../assets/fondochatbot.png";
-import imagenchatbot from "../../assets/imagenchatbot.png";
 import { VoiceRecognition } from "../../components";
+import { HfInference } from "@huggingface/inference";
+
+interface Message {
+  sender: string;
+  text: string;
+  image?: string; // El campo image es opcional
+}
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
-    []
-  );
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  // Función para interactuar con la API de Groq
+  const speakResponse = (response: string) => {
+    const utterance = new SpeechSynthesisUtterance(response);
+    utterance.lang = "es-ES";
+    window.speechSynthesis.speak(utterance);
+  };
+
   const fetchGroqResponse = async (message: string) => {
     try {
       setIsLoading(true);
@@ -24,12 +34,10 @@ const Chatbot = () => {
         body: JSON.stringify({
           model: "llama3-8b-8192",
           messages: [
-            // Prompt del sistema con restricciones
             {
               role: "system",
-              content: `Eres un asistente virtual especializado en brindar recomendaciones nutricionales personalizadas para pacientes con condiciones médicas como diabetes, hipertensión, problemas cardiovasculares, alergias alimentarias y objetivos como pérdida de peso, aumento de masa muscular, o mejora del rendimiento deportivo. Debes proporcionar respuestas basadas en la salud de los pacientes, ajustando las recomendaciones según su perfil, historial médico y objetivos de salud. El único ámbito en el que puedes ayudar es relacionado con salud, nutrición y la app NutriSalud. Si el usuario pregunta sobre temas ajenos a estos, debes informarles educadamente que solo puedes responder preguntas sobre salud y nutrición, y sobre la funcionalidad de la app. Debes responder de forma corta a lo máximo 120 caracteres y de forma amigable`,
+              content: `Eres un asistente virtual especializado en nutrición y salud...`,
             },
-            // Mensaje del usuario
             {
               role: "user",
               content: message,
@@ -43,16 +51,9 @@ const Chatbot = () => {
       }
 
       const data = await response.json();
-
-      // Verificamos si la respuesta se desvía del tema esperado
       const responseMessage = data.choices[0]?.message?.content;
+
       if (responseMessage) {
-        if (
-          responseMessage.toLowerCase().includes("no puedo responder") ||
-          responseMessage.toLowerCase().includes("tema no relacionado")
-        ) {
-          return "Lo siento, solo puedo responder preguntas relacionadas con salud, nutrición y la app NutriSalud.";
-        }
         return responseMessage;
       }
 
@@ -65,35 +66,81 @@ const Chatbot = () => {
     }
   };
 
-  // Manejar envío de mensajes
+  const processImage = async (imageFile: any) => {
+    const HF_TOKEN = import.meta.env.VITE_HUGGINGFACE_API_KEY; // Tu clave de Hugging Face
+    const inference = new HfInference(HF_TOKEN);
+
+    try {
+      // Convertir el archivo de imagen a un blob
+      const imageBlob =
+        imageFile instanceof Blob
+          ? imageFile
+          : await (await fetch(imageFile)).blob();
+
+      // Hacer la inferencia
+      const response = await inference.imageToText({
+        data: imageBlob,
+        model: "Salesforce/blip-image-captioning-base",
+      });
+
+      console.log("Texto generado:", response);
+      return response.generated_text || "No se generó texto.";
+    } catch (error) {
+      console.error("Error al procesar la imagen:", error);
+      return "No se pudo extraer el texto de la imagen.";
+    }
+  };
+
   const handleSend = async () => {
     if (input.trim()) {
-      const userMessage = { sender: "user", text: input };
+      const userMessage: Message = { sender: "user", text: input };
       setMessages((prev) => [...prev, userMessage]);
       setInput("");
 
-      // Obtener respuesta de la API
       const botResponse = await fetchGroqResponse(input);
-      const botMessage = { sender: "bot", text: botResponse };
+      const botMessage: Message = { sender: "bot", text: botResponse };
       setMessages((prev) => [...prev, botMessage]);
+
+      speakResponse(botResponse);
     }
   };
 
-  // Reiniciar mensajes
-  const handleReset = () => {
-    setMessages([]);
-  };
-
-  // Manejar input de voz
   const handleVoiceInput = async (transcript: string) => {
     if (transcript.trim()) {
-      const userMessage = { sender: "user", text: transcript };
+      const userMessage: Message = { sender: "user", text: transcript };
       setMessages((prev) => [...prev, userMessage]);
 
       const botResponse = await fetchGroqResponse(transcript);
-      const botMessage = { sender: "bot", text: botResponse };
+      const botMessage: Message = { sender: "bot", text: botResponse };
       setMessages((prev) => [...prev, botMessage]);
+
+      speakResponse(botResponse);
     }
+  };
+
+  const onDrop = async (acceptedFiles: File[]) => {
+    const image = acceptedFiles[0];
+    setImageUrl(URL.createObjectURL(image));
+    const caption = await processImage(image);
+    const botMessage: Message = {
+      sender: "bot",
+      text: `Descripción de la imagen: ${caption}`,
+      image: URL.createObjectURL(image), // Asignamos la imagen al mensaje del bot
+    };
+    setMessages((prev) => [...prev, botMessage]);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/png": [".png"],
+    },
+  });
+
+  const handleReset = () => {
+    setMessages([]);
+    setImageUrl(null);
   };
 
   return (
@@ -101,12 +148,19 @@ const Chatbot = () => {
       <div className="chat-window">
         <div className="messages">
           {messages.map((msg, index) => (
-            <p
+            <div
               key={index}
               className={msg.sender === "user" ? "user-message" : "bot-message"}
             >
-              {msg.text}
-            </p>
+              <p>{msg.text}</p>
+              {msg.image && (
+                <img
+                  src={msg.image}
+                  alt="Imagen enviada"
+                  className="message-image"
+                />
+              )}
+            </div>
           ))}
           {isLoading && <p className="bot-message">Escribiendo...</p>}
         </div>
@@ -123,15 +177,18 @@ const Chatbot = () => {
           </button>
         </div>
       </div>
-      <img src={fondochatbot} alt="Fondo Chatbot" className="fondo-chatbot" />
+      <div {...getRootProps()} className="dropzone">
+        <input {...getInputProps()} />
+        <p>
+          Arrastra y suelta una imagen aquí, o haz clic para seleccionar una.
+        </p>
+      </div>
+      {imageUrl && (
+        <img src={imageUrl} alt="Imagen cargada" className="image-preview" />
+      )}
       <button onClick={handleReset} className="reset-chat">
-        <img
-          src={imagenchatbot}
-          alt="Reiniciar Chat"
-          className="imagen-chatbot"
-        />
+        Reiniciar Chat
       </button>
-      {/* Componente de reconocimiento de voz */}
       <VoiceRecognition onVoiceInput={handleVoiceInput} />
     </div>
   );
