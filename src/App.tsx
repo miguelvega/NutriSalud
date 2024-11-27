@@ -21,6 +21,7 @@ import { AuthProvider, useAuth } from "./context";
 import Chatbot from "./pages/Chatbot/Chatbot";
 import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
 import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
+import { ResumenRecomendaciones } from "./pages/Recomendaciones/ResumenRecomendaciones";
 
 function App() {
   const Layout = () => {
@@ -61,6 +62,11 @@ function App() {
               <Route path="/chatbot" element={<Chatbot />} />
               <Route path="/gestion-citas" element={<Gestioncitas />} />
               <Route path="/citas-pendientes" element={<Citaspendientes />} />
+              <Route
+                path="/resumen"
+                element={<ResumenRecomendaciones />}
+              />{" "}
+              {/* Ruta nueva */}
             </Route>
           </Route>
         </Routes>
