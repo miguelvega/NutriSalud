@@ -1,0 +1,132 @@
+.prescripcion-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.prescripcion-title {
+    text-align: center;
+    color: #00796b;
+    margin-bottom: 10px;
+    font-weight: bold; /* Letras en negrita */
+}
+
+.linea-datos-paciente {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0px;
+}
+
+.linea-datos-paciente p {
+    margin: 5;
+    font-weight: bold; /* Letras en negrita */
+}
+
+.linea-datos-paciente input[type="text"] {
+    width: 100px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contenedor-plan {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 0;
+}
+
+.plan-dieta,
+.plan-ejercicio {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 5px;
+    margin-top: 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.plan-dieta h3,
+.plan-ejercicio h3 {
+    text-align: center;
+    color: #00796b;
+    font-weight: bold; /* Letras en negrita */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.plan-dieta p,
+.plan-ejercicio p {
+    font-weight: bold; /* Letras en negrita */
+}
+
+/* Cuadros de texto estáticos */
+textarea.static-textarea-large {
+    width: 100%; /* Ocupa todo el contenedor */
+    height: 100px; /* Tamaño fijo y grande */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Evita que los usuarios cambien el tamaño */
+    font-size: 14px;
+    box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+}
+
+/* Medicamentos y detalles */
+.contenedor-final {
+    margin-top: 20px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    position: relative; /* Permite posicionar los botones dentro */
+}
+
+textarea.static-textarea-large {
+    width: calc(100% - 20px); /* Ajusta para incluir padding interno */
+    height: 100px; /* Tamaño fijo consistente */
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: none; /* Evita redimensionar */
+}
+
+/* Botones en la esquina inferior derecha */
+.botones-final {
+    position: absolute;
+    bottom: 20px; /* Se ajusta al margen inferior */
+    right: 20px; /* Se ajusta al margen derecho */
+    display: flex;
+    gap: 10px;
+}
+
+.volver-button,
+.guardar-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; /* Letras en negrita */
+}
+
+.volver-button {
+    background-color: #79CABE;
+    color: white;
+}
+
+.guardar-button {
+    background-color: #f31313;
+    color: white;
+}
+
+.volver-button:hover {
+    background-color: #00796b;
+}
+
+.guardar-button:hover {
+    background-color: #d60f0f;
+}

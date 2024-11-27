@@ -8,6 +8,8 @@ import InicioMedico from "./pages/InicioMedico/InicioMedico";
 import Chatbot from "./pages/Chatbot/Chatbot";
 import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
 import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
+import DetalleCita from "./pages/DetalleCita/DetalleCita";
+import Prescripcion from "./pages/Prescripcion/Prescripcion";
 
 import {
   Citas,
@@ -45,6 +47,8 @@ function App() {
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/gestion-citas" element={<Gestioncitas />} />
           <Route path="/citas-pendientes" element={<Citaspendientes />} />
+          <Route path="/citas/:id" element={<DetalleCita />} />     
+          <Route path="/prescripcion/:id" element={<Prescripcion/>} />   
         </Routes>
       </BrowserRouter>
     </div>
