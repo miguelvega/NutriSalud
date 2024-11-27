@@ -32,7 +32,7 @@ export const Form = () => {
   });
 
   const onSubmit = (data: FormValues) => {
-    const new_data = { ...data, id_paciente: user.id };
+    const new_data = { ...data, id_patient: user.id };
     console.log(new_data);
 
     setLoading(true);

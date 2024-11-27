@@ -2,13 +2,17 @@ import { PiMedal } from "react-icons/pi";
 import "./NutricionistaCard.css";
 
 interface NutricionistaCardProps {
-  nombre: string;
+  name: string;
+  lastName: string;
+  email: string;
   experience: string;
   avatar?: string; // Imagen de avatar opcional
 }
 
 export const NutricionistaCard = ({
-  nombre,
+  name,
+  lastName,
+  email,
   experience,
   avatar,
 }: NutricionistaCardProps) => (
@@ -16,7 +20,7 @@ export const NutricionistaCard = ({
     className="tarjeta-nutricionista"
     role="button"
     tabIndex={0}
-    aria-label={`Nutricionista ${nombre}`}
+    aria-label={`Nutricionista ${name} ${lastName}`}
   >
     <div
       className="avatar-nutricionista"
@@ -25,9 +29,12 @@ export const NutricionistaCard = ({
       }}
     />
     <p className="nombre-nutricionista">
-      <strong>{nombre}</strong>
+      <strong>
+        {name} {lastName}
+      </strong>
     </p>
     <div className="informacion-nutricionista">
+      <p className="email">{email}</p>
       <p className="experiencia">
         {experience} años
         <PiMedal size={20} />

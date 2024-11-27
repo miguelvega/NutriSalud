@@ -1,15 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./NutricionistaList.css";
 import { NutricionistaCard } from "../NutricionistaCard/NutricionistaCard";
 import { Control, Controller, FieldError } from "react-hook-form";
 import { FormValues } from "../../models";
-
-const nutritionists = [
-  { id: "1", nombre: "Luis Perez Ruiz", experience: "5", avatar: "" },
-  { id: "2", nombre: "Maria Ramos C.", experience: "8", avatar: "" },
-  { id: "3", nombre: "Nicole Gonzales", experience: "3", avatar: "" },
-  { id: "4", nombre: "Gonzalo Ramirez", experience: "10", avatar: "" },
-];
+import NutriAvatar from "./../../../../assets/Nutri-Avatar.jpg";
 
 interface Props {
   name: keyof FormValues;
@@ -19,9 +13,33 @@ interface Props {
 
 export const NutricionistaList = ({ control, name, error }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [nutricionistas, setNutricionistas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errorFetch, setErrorFetch] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/usuario/nutricionistas?role=nutricionista")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setNutricionistas(data); // Aquí guardamos los datos en el estado
+        setLoading(false); // Cambiamos el estado de carga
+      })
+      .catch((error) => {
+        setErrorFetch(error.message); // En caso de error, lo guardamos en el estado
+        setLoading(false);
+      });
+  }, []); // Se ejecuta una vez al montar el componente
+
+  if (loading) return <p>Cargando...</p>;
+  if (errorFetch) return <p>Error: {errorFetch}</p>;
 
   const handleNext = () => {
-    if (currentIndex < nutritionists.length - 1) {
+    if (currentIndex < nutricionistas.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -55,19 +73,28 @@ export const NutricionistaList = ({ control, name, error }: Props) => {
                   transform: `translateX(-${currentIndex * 250}px)`, // 250px = ancho de cada tarjeta
                 }}
               >
-                {nutritionists.map((n) => (
+                {nutricionistas.map((n) => (
                   <div
-                    key={n.id}
+                    //@ts-ignore
+                    key={n._id}
                     className={`carousel-item ${
-                      field.value === n.nombre ? "selected" : ""
+                      //@ts-ignore
+                      field.value === n.name ? "selected" : ""
                     }`}
-                    onClick={() => field.onChange(n.id)}
+                    //@ts-ignore
+                    onClick={() => field.onChange(n._id)}
                   >
                     <NutricionistaCard
-                      nombre={n.nombre}
-                      experience={n.experience}
-                      avatar={n.avatar}
-                      key={n.nombre}
+                      //@ts-ignore
+                      name={n.name}
+                      //@ts-ignore
+                      lastName={n.lastName}
+                      //@ts-ignore
+                      experience={n.experiencia}
+                      //@ts-ignore
+                      email={n.email}
+                      //@ts-ignore
+                      avatar={n.avatar | NutriAvatar}
                     />
                   </div>
                 ))}
@@ -77,7 +104,7 @@ export const NutricionistaList = ({ control, name, error }: Props) => {
             <button
               className="carousel-button next"
               onClick={handleNext}
-              disabled={currentIndex === nutritionists.length - 1}
+              disabled={currentIndex === nutricionistas.length - 1}
             >
               {">"}
             </button>
