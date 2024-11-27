@@ -20,24 +20,24 @@ export const ConsultaSection = ({ control, errors }: Props) => (
         control={control}
         render={({ field }) => (
           <>
-            <label>
+            <div className="input-tipo">
+              <label>Seguimiento</label>
               <input
                 type="radio"
                 value="Seguimiento"
                 checked={field.value === "Seguimiento"}
                 onChange={field.onChange}
               />{" "}
-              Seguimiento
-            </label>
-            <label>
+            </div>
+            <div className="input-tipo">
+              <label>Primera visita</label>
               <input
                 type="radio"
                 value="Primera visita"
                 checked={field.value === "Primera visita"}
                 onChange={field.onChange}
               />{" "}
-              Primera visita
-            </label>
+            </div>
           </>
         )}
       />

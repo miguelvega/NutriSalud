@@ -28,11 +28,11 @@ const pacienteSchema = baseSchema.extend({
   talla: z
     .number()
     .positive("La talla debe ser un número positivo")
-    .min(0, "La talla debe ser mayor a 0 metros"),
+    .min(0, "La talla debe ser mayor a 0 cm"),
   peso: z
     .number()
     .positive("El peso debe ser un número positivo")
-    .min(1, "El peso debe ser mayor a 1 kg"),
+    .min(1, "El peso debe ser mayor a 1 gramo"),
 });
 
 const nutricionistaSchema = baseSchema.extend({

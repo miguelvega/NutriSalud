@@ -6,9 +6,7 @@ export const GenerarCita = () => {
     <div className="contenedor-cita">
       <h1 className="titulo-cita">Programación de Citas</h1>
 
-      <div className="section-form">
-        <Form />
-      </div>
+      <Form />
     </div>
   );
 };

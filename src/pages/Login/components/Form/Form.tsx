@@ -5,9 +5,12 @@ import Input from "../Input/Input";
 import "./Form.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context";
+import { Toast } from "../../../../components/Toast/Toast";
 
 const Form = () => {
   const { login } = useAuth();
+  let toastMessage = "";
+
   const navigate = useNavigate();
   const {
     control,
@@ -21,15 +24,45 @@ const Form = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     // verificar con el json obtenido del backend para determinar el rol
-    const userRole = "paciente"; // o paciente
-    login({ role: userRole });
-    console.log(data);
-    if (userRole.match("paciente")) {
-      navigate("/");
-    } else {
-      navigate("/inicio-medico");
+    try {
+      const response = await fetch(
+        `http://localhost:8000/usuario/login?email=${data.email}&password=${data.password}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorMessage = `Error: ${response.status} ${response.statusText}`;
+        throw new Error(errorMessage);
+      }
+
+      const result = await response.json();
+      console.log("Resultado:", result);
+
+      if (!result.ok) {
+        toastMessage = "No se ha podido ingresar,ingrese bien las credenciales";
+      } else {
+        toastMessage = "Se ha ingresado a la aplicación";
+        const userRole = result.user.role;
+        const userId = result.user._id; // Obtén el id del usuario
+        const userName = result.user.name;
+        login({ role: userRole, id: userId, name: userName }); // Pasa el role y el id
+        if (userRole.match("paciente")) {
+          navigate("/");
+        } else {
+          navigate("/inicio-medico");
+        }
+      }
+
+      // navigate("/");
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
     }
   };
 
@@ -60,6 +93,13 @@ const Form = () => {
           Crear Cuenta
         </Link>
       </div>
+
+      {/* Toast */}
+      {toastMessage.length >= 0 ? (
+        <Toast message={toastMessage} duration={1000} onClose={() => {}} />
+      ) : (
+        <></>
+      )}
     </form>
   );
 };

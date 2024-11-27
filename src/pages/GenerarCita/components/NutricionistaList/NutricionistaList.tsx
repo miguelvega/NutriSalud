@@ -61,7 +61,7 @@ export const NutricionistaList = ({ control, name, error }: Props) => {
                     className={`carousel-item ${
                       field.value === n.nombre ? "selected" : ""
                     }`}
-                    onClick={() => field.onChange(n.nombre)}
+                    onClick={() => field.onChange(n.id)}
                   >
                     <NutricionistaCard
                       nombre={n.nombre}

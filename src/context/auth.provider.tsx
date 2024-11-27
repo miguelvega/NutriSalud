@@ -8,42 +8,61 @@ import {
 
 interface AuthContextType {
   isLoggedIn: boolean | undefined; // Cambiado a undefined inicialmente
-  login: (userData: { role: string }) => void;
+  login: (userData: { role: string; id: string; name: string }) => void;
   logout: () => void;
-  userRole: string | null;
+  user: { role: string | null; id: string | null; name: string | null };
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<{
+    role: string | null;
+    id: string | null;
+    name: string | null;
+  }>({
+    role: null,
+    id: null,
+    name: null,
+  });
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(undefined);
-  const [userRole, setUserRole] = useState<string | null>(null);
 
   // Sincronizar con localStorage al montar
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const storedUserRole = localStorage.getItem("userRole");
+    const storedUserId = localStorage.getItem("userId");
+    const storedName = localStorage.getItem("name");
 
     setIsLoggedIn(storedIsLoggedIn);
-    setUserRole(storedUserRole);
+    setUser({
+      role: storedUserRole,
+      id: storedUserId,
+      name: storedName,
+    });
   }, []);
 
-  const login = (userData: { role: string }) => {
+  const login = (userData: { role: string; id: string; name: string }) => {
     setIsLoggedIn(true);
-    setUserRole(userData.role);
+    setUser(userData); // Guardamos tanto el role como el id
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("userRole", userData.role);
+    localStorage.setItem("userId", userData.id); // Guardamos el id en localStorage
+    localStorage.setItem("name", userData.name);
   };
 
   const logout = () => {
     setIsLoggedIn(false);
-    setUserRole(null);
+    setUser({ role: null, id: null, name: null });
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userRole");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("name");
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, userRole }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );
