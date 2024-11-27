@@ -1,0 +1,166 @@
+/* Contenedor principal */
+.preguntas-frecuentes-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.preguntas-frecuentes-container h1 {
+  color: #6ec4b5; /* Color verde-menta del título */
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+/* Filtros */
+.filtros {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filtros .btn {
+  background-color: #2f9e91; /* Color verde oscuro para los botones */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filtros .btn:hover {
+  background-color: #287f74; /* Hover en verde más oscuro */
+}
+
+.input-filtro {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.select-cantidad {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Contenido principal */
+.contenido-preguntas {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Alinea los elementos en la parte superior */
+}
+
+/* Lista de preguntas */
+.preguntas-lista {
+  flex: 3;
+  list-style: none;
+  padding: 0;
+}
+
+/* Categorías */
+.categorias {
+  flex: 1;
+  background: #f3f3f3; /* Fondo gris claro */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 250px; /* Ancho mínimo para evitar compresión */
+  max-width: 300px; /* Ancho máximo para mantener consistencia */
+}
+
+.categorias h3 {
+  color: #6ec4b5; /* Color verde-menta para el título */
+  margin-bottom: 10px;
+}
+
+.categorias ul {
+  list-style: none;
+  padding: 0;
+}
+
+.categorias li {
+  padding: 10px;
+  background: white; /* Fondo blanco para los elementos */
+  margin-bottom: 5px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: #333; /* Texto oscuro */
+}
+
+.categorias li:hover {
+  background-color: #e0e0e0; /* Hover gris más claro */
+}
+
+.categorias .categoria-boton {
+  background: none;
+  border: none;
+  color: #2f9e91; /* Verde oscuro */
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.categorias .categoria-boton:hover {
+  background-color: #e0e0e0; /* Gris claro */
+  border-radius: 5px;
+}
+
+.categorias .categoria-boton:focus {
+  outline: none;
+  font-weight: bold;
+}
+
+/* Preguntas */
+.pregunta-item {
+  background-color: #f3f3f3; /* Fondo gris claro */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pregunta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fffacd; /* Fondo amarillo claro */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.pregunta-header:hover {
+  background-color: #fff8b5; /* Hover amarillo más claro */
+}
+
+.btn-expandir {
+  background-color: #6ec4b5; /* Botón verde-menta */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn-expandir:hover {
+  background-color: #5aa99c; /* Hover verde más oscuro */
+}
+
+.respuesta {
+  margin-top: 10px;
+  background-color: #d0f0ed; /* Fondo verde claro */
+  padding: 10px;
+  border-radius: 5px;
+  color: #333; /* Texto oscuro */
+  font-size: 14px;
+}

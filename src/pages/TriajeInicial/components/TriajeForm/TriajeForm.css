@@ -85,3 +85,10 @@ textarea.input-textarea {
 .submit-button:hover {
   background-color: #00796b;
 }
+
+.error-message {
+  color: #d9534f;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
