@@ -2,7 +2,15 @@ import { useState, useEffect } from "react";
 import ErrorModal from "./ErrorModal";
 import "./Gestioncitas.css";
 
-const daysOfWeek = ["LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"];
+const daysOfWeek = [
+  "LUNES",
+  "MARTES",
+  "MIÉRCOLES",
+  "JUEVES",
+  "VIERNES",
+  "SÁBADO",
+  "DOMINGO",
+];
 
 type AvailabilityType = {
   [key: string]: string;
@@ -16,7 +24,9 @@ const Gestioncitas = () => {
   const [endHour, setEndHour] = useState(20);
   const [endMinute, setEndMinute] = useState(0);
   const [availability, setAvailability] = useState<AvailabilityType>({});
-  const [currentMonthIndex, setCurrentMonthIndex] = useState(new Date().getMonth());
+  const [currentMonthIndex, setCurrentMonthIndex] = useState(
+    new Date().getMonth()
+  );
   const [monthStartDay, setMonthStartDay] = useState(0);
   const [daysInMonth, setDaysInMonth] = useState(0);
   const [todayDate, setTodayDate] = useState(new Date().getDate());
@@ -24,8 +34,18 @@ const Gestioncitas = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const monthNames = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
 
   useEffect(() => {
@@ -61,7 +81,9 @@ const Gestioncitas = () => {
 
   const handleDateClick = (date: number) => {
     if (date >= todayDate || currentMonthIndex > new Date().getMonth()) {
-      setSelectedDate((prev) => (prev === date.toString() ? null : date.toString()));
+      setSelectedDate((prev) =>
+        prev === date.toString() ? null : date.toString()
+      );
       setSelectedDays([]);
     }
   };
@@ -82,7 +104,11 @@ const Gestioncitas = () => {
       return;
     }
 
-    const interval = `${startHour.toString().padStart(2, "0")}:${startMinute.toString().padStart(2, "0")} - ${endHour.toString().padStart(2, "0")}:${endMinute.toString().padStart(2, "0")}`;
+    const interval = `${startHour.toString().padStart(2, "0")}:${startMinute
+      .toString()
+      .padStart(2, "0")} - ${endHour.toString().padStart(2, "0")}:${endMinute
+      .toString()
+      .padStart(2, "0")}`;
 
     setAvailability((prev) => {
       const newAvailability = { ...prev };
@@ -92,7 +118,11 @@ const Gestioncitas = () => {
       } else {
         selectedDays.forEach((day) => {
           for (let i = todayDate; i <= daysInMonth; i++) {
-            const date = new Date(new Date().getFullYear(), currentMonthIndex, i);
+            const date = new Date(
+              new Date().getFullYear(),
+              currentMonthIndex,
+              i
+            );
             if (date.getDay() === (daysOfWeek.indexOf(day) + 1) % 7) {
               const dayKey = i.toString();
               newAvailability[dayKey] = interval;
@@ -103,6 +133,18 @@ const Gestioncitas = () => {
 
       return newAvailability;
     });
+
+    const formData = {
+      mes: monthNames[currentMonthIndex],
+      diasSeleccionados: selectedDays,
+      fechaSeleccionada: selectedDate,
+      horaInicio: `${startHour}:${startMinute.toString().padStart(2, "0")}`,
+      horaFin: `${endHour}:${endMinute.toString().padStart(2, "0")}`,
+      disponibilidad: availability,
+    };
+
+    // Mostrar los datos en la consola
+    console.log("Datos del formulario:", formData);
   };
 
   const handleDeleteInterval = () => {
@@ -116,20 +158,56 @@ const Gestioncitas = () => {
       const newAvailability = { ...prev };
 
       if (selectedDate) {
+        // Construir el objeto de información
+        const logData = {
+          mes: monthNames[currentMonthIndex],
+          horaInicio:
+            newAvailability[selectedDate]?.split(" - ")[0] || "No definida",
+          horaFin:
+            newAvailability[selectedDate]?.split(" - ")[1] || "No definida",
+          disponibilidad: {
+            [selectedDate]:
+              newAvailability[selectedDate] || "Sin intervalo asignado",
+          },
+        };
+        console.log("Datos eliminados:", logData);
+
+        // Eliminar la fecha seleccionada
         delete newAvailability[selectedDate];
       } else {
         selectedDays.forEach((day) => {
           for (let i = todayDate; i <= daysInMonth; i++) {
-            const date = new Date(new Date().getFullYear(), currentMonthIndex, i);
+            const date = new Date(
+              new Date().getFullYear(),
+              currentMonthIndex,
+              i
+            );
             if (date.getDay() === (daysOfWeek.indexOf(day) + 1) % 7) {
               const dayKey = i.toString();
-              delete newAvailability[dayKey];
+              if (newAvailability[dayKey]) {
+                // Construir el objeto de información
+                const logData = {
+                  mes: monthNames[currentMonthIndex],
+                  horaInicio:
+                    newAvailability[dayKey]?.split(" - ")[0] || "No definida",
+                  horaFin:
+                    newAvailability[dayKey]?.split(" - ")[1] || "No definida",
+                  disponibilidad: {
+                    [dayKey]: newAvailability[dayKey],
+                  },
+                };
+                console.log("Datos eliminados:", logData);
+
+                // Eliminar el intervalo
+                delete newAvailability[dayKey];
+              }
             }
           }
         });
       }
       return newAvailability;
     });
+
     setSelectedDate(null);
     setSelectedDays([]);
   };
@@ -155,7 +233,9 @@ const Gestioncitas = () => {
           {daysOfWeek.map((day) => (
             <button
               key={day}
-              className={`day-button ${selectedDays.includes(day) ? "selected" : ""}`}
+              className={`day-button ${
+                selectedDays.includes(day) ? "selected" : ""
+              }`}
               onClick={() => handleDaySelection(day)}
             >
               {day}
@@ -166,16 +246,34 @@ const Gestioncitas = () => {
         <label>Agregar Intervalo Horario:</label>
         <div className="interval-selector">
           <label>De:</label>
-          <input type="number" min="0" max="23" value={startHour} onChange={(e) => setStartHour(parseInt(e.target.value))} />
+          <input
+            type="number"
+            min="0"
+            max="23"
+            value={startHour}
+            onChange={(e) => setStartHour(parseInt(e.target.value))}
+          />
           :
-          <select value={startMinute} onChange={(e) => setStartMinute(parseInt(e.target.value))}>
+          <select
+            value={startMinute}
+            onChange={(e) => setStartMinute(parseInt(e.target.value))}
+          >
             <option value="0">00</option>
             <option value="30">30</option>
           </select>
           <label>A:</label>
-          <input type="number" min="0" max="23" value={endHour} onChange={(e) => setEndHour(parseInt(e.target.value))} />
+          <input
+            type="number"
+            min="0"
+            max="23"
+            value={endHour}
+            onChange={(e) => setEndHour(parseInt(e.target.value))}
+          />
           :
-          <select value={endMinute} onChange={(e) => setEndMinute(parseInt(e.target.value))}>
+          <select
+            value={endMinute}
+            onChange={(e) => setEndMinute(parseInt(e.target.value))}
+          >
             <option value="0">00</option>
             <option value="30">30</option>
           </select>
@@ -185,24 +283,43 @@ const Gestioncitas = () => {
         </div>
       </div>
 
-      <div className="time-grid" style={{ gridTemplateRows: `repeat(${rowsNeeded}, 1fr)` }}>
+      <div
+        className="time-grid"
+        style={{ gridTemplateRows: `repeat(${rowsNeeded}, 1fr)` }}
+      >
         {daysOfWeek.map((day, dayIndex) => (
           <div key={day} className="time-column">
             <div className="day-label">{day}</div>
             {[...Array(rowsNeeded)].map((_, rowIndex) => {
               const dayNumber = dayIndex + rowIndex * 7 - monthStartDay + 1;
               const isWithinMonth = dayNumber > 0 && dayNumber <= daysInMonth;
-              const isAfterToday = currentMonthIndex > new Date().getMonth() || (currentMonthIndex === new Date().getMonth() && dayNumber >= todayDate);
+              const isAfterToday =
+                currentMonthIndex > new Date().getMonth() ||
+                (currentMonthIndex === new Date().getMonth() &&
+                  dayNumber >= todayDate);
               const isSelectedDate = selectedDate === dayNumber.toString();
-              const interval = isWithinMonth && isAfterToday ? availability[dayNumber.toString()] : "";
+              const interval =
+                isWithinMonth && isAfterToday
+                  ? availability[dayNumber.toString()]
+                  : "";
 
               return (
                 <div
                   key={rowIndex}
-                  className={`time-slot ${isWithinMonth && isAfterToday ? interval ? "filled" : "" : "out-of-month"} ${isSelectedDate ? "highlighted" : ""}`}
-                  onClick={() => isWithinMonth && isAfterToday && handleDateClick(dayNumber)}
+                  className={`time-slot ${
+                    isWithinMonth && isAfterToday
+                      ? interval
+                        ? "filled"
+                        : ""
+                      : "out-of-month"
+                  } ${isSelectedDate ? "highlighted" : ""}`}
+                  onClick={() =>
+                    isWithinMonth && isAfterToday && handleDateClick(dayNumber)
+                  }
                 >
-                  {isWithinMonth && <span className="day-number">{dayNumber}</span>}
+                  {isWithinMonth && (
+                    <span className="day-number">{dayNumber}</span>
+                  )}
                   {interval}
                 </div>
               );
@@ -219,7 +336,10 @@ const Gestioncitas = () => {
       )}
 
       <div>
-        <button className="delete-interval-button" onClick={handleDeleteInterval}>
+        <button
+          className="delete-interval-button"
+          onClick={handleDeleteInterval}
+        >
           Eliminar
         </button>
         <button className="add-interval-button" onClick={handleAddInterval}>
