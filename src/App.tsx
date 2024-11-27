@@ -22,6 +22,9 @@ import Chatbot from "./pages/Chatbot/Chatbot";
 import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
 import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
 import imagenChatbot from "./assets/imagenchatbot.png";
+import { ResumenRecomendaciones } from "./pages/Recomendaciones/ResumenRecomendaciones";
+import DetalleCita from "./pages/DetalleCita/DetalleCita";
+import { Preescripcion } from "./pages/Preescripcion/Preescripcion";
 
 function App() {
   const Layout = () => {
@@ -76,6 +79,12 @@ function App() {
               <Route path="/chatbot" element={<Chatbot />} />
               <Route path="/gestion-citas" element={<Gestioncitas />} />
               <Route path="/citas-pendientes" element={<Citaspendientes />} />
+              <Route
+                path="/resumen"
+                element={<ResumenRecomendaciones />}
+              />{" "}
+              <Route path="/citas/:id" element={<DetalleCita />} />
+              <Route path="/preescripcion/:id" element={<Preescripcion />} />
             </Route>
           </Route>
         </Routes>

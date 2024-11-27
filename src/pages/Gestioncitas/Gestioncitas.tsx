@@ -110,6 +110,62 @@ const Gestioncitas = () => {
       .toString()
       .padStart(2, "0")}`;
 
+    // Aquí vamos a construir el array de objetos
+    const availabilityData: Array<{
+      horaInicio: string;
+      horaFin: string;
+      date: string;
+      mes: string;
+    }> = [];
+
+    // Si se seleccionó una fecha
+    if (selectedDate) {
+      const formattedDate = new Date(selectedDate);
+      const year = formattedDate.getFullYear();
+      const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0"); // Asegúrate de que el mes esté en formato de dos dígitos
+      const day = formattedDate.getDate().toString().padStart(2, "0");
+
+      const formattedFullDate = `${year}-${month}-${day}`; // Formato año-mes-día
+
+      availabilityData.push({
+        horaInicio: `${startHour}:${startMinute.toString().padStart(2, "0")}`,
+        horaFin: `${endHour}:${endMinute.toString().padStart(2, "0")}`,
+        date: formattedFullDate, // Fecha con formato completo
+        mes: monthNames[currentMonthIndex],
+      });
+    } else {
+      // Si se seleccionaron días
+      selectedDays.forEach((day) => {
+        for (let i = todayDate; i <= daysInMonth; i++) {
+          const date = new Date(new Date().getFullYear(), currentMonthIndex, i);
+          if (date.getDay() === (daysOfWeek.indexOf(day) + 1) % 7) {
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Asegúrate de que el mes esté en formato de dos dígitos
+            const dayString = i.toString().padStart(2, "0");
+
+            const fullDate = `${year}-${month}-${dayString}`; // Formato año-mes-día
+
+            availabilityData.push({
+              horaInicio: `${startHour}:${startMinute
+                .toString()
+                .padStart(2, "0")}`,
+              horaFin: `${endHour}:${endMinute.toString().padStart(2, "0")}`,
+              date: fullDate, // Fecha con formato completo
+              mes: monthNames[currentMonthIndex],
+            });
+          }
+        }
+      });
+    }
+
+    // Mostrar el array de objetos en la consola
+    const horarioData = {
+      id_nutritionist: "agregadoPorProvider",
+      horario: availabilityData,
+    };
+    console.log(horarioData);
+
+    // Actualizar la disponibilidad en el estado
     setAvailability((prev) => {
       const newAvailability = { ...prev };
 
@@ -124,8 +180,12 @@ const Gestioncitas = () => {
               i
             );
             if (date.getDay() === (daysOfWeek.indexOf(day) + 1) % 7) {
-              const dayKey = i.toString();
-              newAvailability[dayKey] = interval;
+              const year = date.getFullYear();
+              const month = (date.getMonth() + 1).toString().padStart(2, "0");
+              const dayString = i.toString().padStart(2, "0");
+
+              const fullDate = `${year}-${month}-${dayString}`;
+              newAvailability[fullDate] = interval; // Usar la fecha completa
             }
           }
         });
@@ -145,7 +205,32 @@ const Gestioncitas = () => {
     setAvailability((prev) => {
       const newAvailability = { ...prev };
 
+      const formatDate = (day: number) => {
+        // Construir la fecha con formato "año-mes-día"
+        const date = new Date(new Date().getFullYear(), currentMonthIndex, day);
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Asegura que el mes tenga dos dígitos
+        const dayOfMonth = day.toString().padStart(2, "0"); // Asegura que el día tenga dos dígitos
+        return `${year}-${month}-${dayOfMonth}`;
+      };
+
       if (selectedDate) {
+        // CON EL ID OBTENIDO ENVIARLO JUNTO AL ID DEL NUTRICIONISTA MANDARLO PARA ELIMINARLO
+        // Construir el objeto de información con la estructura de "horario"
+        const logData = {
+          id_nutritionist: "agregadoPorProvider",
+          horario: {
+            horaInicio:
+              newAvailability[selectedDate]?.split(" - ")[0] || "No definida",
+            horaFin:
+              newAvailability[selectedDate]?.split(" - ")[1] || "No definida",
+            date: formatDate(parseInt(selectedDate)), // Formato "año-mes-día"
+            mes: monthNames[currentMonthIndex],
+          },
+        };
+        console.log("Datos eliminados:", logData);
+
+        // Eliminar la fecha seleccionada
         delete newAvailability[selectedDate];
       } else {
         selectedDays.forEach((day) => {
@@ -157,13 +242,30 @@ const Gestioncitas = () => {
             );
             if (date.getDay() === (daysOfWeek.indexOf(day) + 1) % 7) {
               const dayKey = i.toString();
-              delete newAvailability[dayKey];
+              if (newAvailability[dayKey]) {
+                // Construir el objeto de información con la estructura de "horario"
+                const logData = {
+                  horario: {
+                    horaInicio:
+                      newAvailability[dayKey]?.split(" - ")[0] || "No definida",
+                    horaFin:
+                      newAvailability[dayKey]?.split(" - ")[1] || "No definida",
+                    date: formatDate(i), // Formato "año-mes-día"
+                    mes: monthNames[currentMonthIndex],
+                  },
+                };
+                console.log("Datos eliminados:", logData);
+
+                // Eliminar el intervalo
+                delete newAvailability[dayKey];
+              }
             }
           }
         });
       }
       return newAvailability;
     });
+
     setSelectedDate(null);
     setSelectedDays([]);
   };
