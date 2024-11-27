@@ -104,14 +104,21 @@ export const TriajeForm: React.FC<TriajeFormProps> = ({ onSubmit }) => {
       <div className="objetivos-especificos">
         <label>Objetivos Específicos</label>
         <div className="checkbox-group">
-          <label>
-            <input type="checkbox" name="objetivo" value="perder_peso" /> Perder
-            peso
-          </label>
-          <label>
-            <input type="checkbox" name="objetivo" value="ganar_masa" /> Ganar
-            masa muscular
-          </label>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              minWidth: "500px",
+              maxWidth: "500px",
+            }}
+          >
+            <label>Perder peso</label>
+            <input type="checkbox" name="objetivo" value="perder_peso" />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <label>Ganar masa muscular</label>
+            <input type="checkbox" name="objetivo" value="ganar_masa" />
+          </div>
         </div>
 
         <label className="form-label">Otro:</label>

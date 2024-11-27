@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./InicioMedico.css";
 import gestionCitas from "../../assets/gestion_citas.png";
@@ -40,9 +39,6 @@ const InicioMedico = () => {
       <div className="decoration-section">
         <img src={fondoPalta} alt="Decoración Palta" className="fondo-palta" />
       </div>
-      <Link to="/chatbot" className="chatbot-button-container">
-        <img src={imagenChatbot} alt="Chatbot" className="chatbot-icon" />
-      </Link>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import "./Chatbot.css";
 import { VoiceRecognition } from "../../components";
 import { HfInference } from "@huggingface/inference";
+import { useAuth } from "../../context";
 
 interface Message {
   sender: string;
@@ -22,6 +23,8 @@ const Chatbot = () => {
     window.speechSynthesis.speak(utterance);
   };
 
+  const { user } = useAuth();
+
   const fetchGroqResponse = async (message: string) => {
     try {
       setIsLoading(true);
@@ -36,7 +39,10 @@ const Chatbot = () => {
           messages: [
             {
               role: "system",
-              content: `Eres un asistente virtual especializado en nutrición y salud...`,
+              content: `¡Hola! ${user.role} ${user.name} un gusto hablar contigo,soy tu asistente de NutriSalud, aquí para ayudarte con tu salud y nutrición. Por favor, responde de manera breve (máximo dos líneas). El usuario es un ${user.role} recuerdalo y debes de seguir la conversacion respecto a eso. Debes de saludarla por su nombre
+              Lo siguiente va a depender de si es un paciente debes de preguntarle acerca de consultas o dudas de la aplicación o sobre sus problemas nutricionales.
+              Si es un nutricionista debes de preguntarle si tiene alguna duda o si quiere saber algunas ultimas noticias acerca del mundo de la nutricion
+              `,
             },
             {
               role: "user",

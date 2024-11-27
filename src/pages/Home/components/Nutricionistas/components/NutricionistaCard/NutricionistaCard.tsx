@@ -5,11 +5,18 @@ import { LuAward } from "react-icons/lu";
 
 interface Props {
   name: string;
+  lastName: string;
+  email: string;
   experience: string;
-  imgPath: string;
+  imgPath?: string;
 }
 
-export const NutricionistaCard = ({ name, experience, imgPath }: Props) => {
+export const NutricionistaCard = ({
+  name,
+  lastName,
+  experience,
+  imgPath,
+}: Props) => {
   return (
     <div className="nutricionista-card">
       <img
@@ -20,7 +27,9 @@ export const NutricionistaCard = ({ name, experience, imgPath }: Props) => {
       <div className="info-nutricionista">
         <div className="name-nutricionista">
           <RiNurseLine />
-          <p>{name}</p>
+          <p>
+            {name} {lastName}
+          </p>
         </div>
 
         <div className="experience-nutricionista">

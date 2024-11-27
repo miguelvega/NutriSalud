@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet, Link } from "react-router-dom";
 
 import { Navbar } from "./components";
 import { Navbarnutri } from "./components/Navbarnutri/Navbarnutri";
@@ -21,14 +21,29 @@ import { AuthProvider, useAuth } from "./context";
 import Chatbot from "./pages/Chatbot/Chatbot";
 import Gestioncitas from "./pages/Gestioncitas/Gestioncitas";
 import Citaspendientes from "./pages/Citaspendientes/Citaspendientes";
+import imagenChatbot from "./assets/imagenchatbot.png";
 
 function App() {
   const Layout = () => {
-    const { userRole } = useAuth();
+    const { user } = useAuth();
     return (
       <>
         {/* Mostrar Navbar según el rol */}
-        {userRole === "nutricionista" ? <Navbarnutri /> : <Navbar />}
+        {user.role === "nutricionista" ? (
+          <>
+            <Navbarnutri />
+            <Link to="/chatbot" className="chatbot-button-container">
+              <img src={imagenChatbot} alt="Chatbot" className="chatbot-icon" />
+            </Link>
+          </>
+        ) : (
+          <>
+            <Navbar />
+            <Link to="/chatbot" className="chatbot-button-container">
+              <img src={imagenChatbot} alt="Chatbot" className="chatbot-icon" />
+            </Link>
+          </>
+        )}
         {/* Renderizar rutas anidadas */}
         <Outlet />
       </>
