@@ -1,0 +1,58 @@
+.resumen-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.felicitaciones {
+  margin-bottom: 20px;
+}
+
+.felicitaciones-icono {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+  animation: bounce 1.5s infinite;
+}
+
+.felicitaciones-titulo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.felicitaciones-texto {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.resumen-subtitulo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.resumen-detalle p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

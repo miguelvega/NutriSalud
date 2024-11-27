@@ -1,0 +1,104 @@
+.dieta-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  margin: 0px auto;
+  max-width: 600px;
+}
+
+.dieta-titulo {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.dieta-descripcion {
+  font-size: 16px;
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.dieta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dieta-recomendados,
+.dieta-evitados {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.dieta-subtitulo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.dieta-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.dieta-item {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #e8f8f0;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dieta-item:hover {
+  background-color: #d1f2e5;
+}
+
+.dieta-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.dieta-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.dieta-semana {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.dieta-detalle {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.dieta-lista-evitar {
+  list-style: none;
+  padding: 0;
+}
+
+.dieta-item-evitar {
+  padding: 8px;
+  background-color: #fcebea;
+  color: #d9534f;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

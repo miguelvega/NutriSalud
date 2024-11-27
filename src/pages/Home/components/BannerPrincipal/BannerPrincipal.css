@@ -48,6 +48,12 @@
   background-color: #2a8e8b;
 }
 
+.label-link-comienza {
+  text-decoration: none;
+  padding: 10px 5px;
+  color: #fff;
+}
+
 .arrow-button {
   position: absolute;
   transform: translateY(-50%);
