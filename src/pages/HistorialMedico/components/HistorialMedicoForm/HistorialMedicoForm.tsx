@@ -18,7 +18,7 @@ export const HistorialMedicoForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-      <h2>Actualizar Historial Médico</h2>
+      <h2 className="title-historial">Actualizar Historial Médico</h2>
 
       {/* Nombre Completo */}
       <div className="form-group">
@@ -41,15 +41,19 @@ export const HistorialMedicoForm = () => {
           control={control}
           render={({ field }) => (
             <div>
-              <input type="radio" {...field} value="Femenino" id="femenino" />{" "}
-              Femenino
-              <input
-                type="radio"
-                {...field}
-                value="Masculino"
-                id="masculino"
-              />{" "}
-              Masculino
+              <div className="input-sexo">
+                <input type="radio" {...field} value="Femenino" id="femenino" />{" "}
+                Femenino
+              </div>
+              <div className="input-sexo">
+                <input
+                  type="radio"
+                  {...field}
+                  value="Masculino"
+                  id="masculino"
+                />{" "}
+                Masculino
+              </div>
             </div>
           )}
         />

@@ -1,0 +1,67 @@
+/* Overlay for the confirmation dialog */
+.confirm-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Dialog box styling */
+.confirm-dialog {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Button container styling */
+.dialog-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* "Guardar" button styled in red */
+.confirm-button {
+  background-color: #f31313;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.confirm-button:hover {
+  background-color: #d60f0f;
+}
+
+/* "Modificar" button styled in green */
+.modify-button {
+  background-color: #66b3a7;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modify-button:hover {
+  background-color: #00a8a0;
+}
+
+/* Optional: Additional styling for consistent margins */
+.modify-button,
+.confirm-button {
+  margin: 10px;
+  padding: 8px 15px;
+}

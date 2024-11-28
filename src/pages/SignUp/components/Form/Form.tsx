@@ -33,10 +33,29 @@ const Form = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // Aquí puedes manejar el envío del formulario
-    navigate("/login"); // Redirige después de enviar
+  const onSubmit = async (data: FormValues) => {
+    const { confirmPassword, ...new_data } = data;
+    console.log(new_data);
+    try {
+      const response = await fetch("http://localhost:8000/usuario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(new_data),
+      });
+
+      if (!response.ok) {
+        const errorMessage = `Error: ${response.status} ${response.statusText}`;
+        throw new Error(errorMessage);
+      }
+
+      const result = await response.json();
+      console.log("Resultado:", result);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
   };
 
   return (
@@ -94,11 +113,11 @@ const Form = () => {
           <Input
             name="talla"
             control={control}
-            label="Talla (en metros)"
+            label="Talla (en cm)"
             type="number"
-            min={0.1}
-            max={3}
-            step={0.01}
+            min={0}
+            max={250}
+            step={1}
             //@ts-ignore
             error={errors?.talla}
           />

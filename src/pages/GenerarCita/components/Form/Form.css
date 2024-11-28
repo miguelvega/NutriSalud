@@ -1,0 +1,23 @@
+.section-form {
+  margin: 0 auto;
+}
+
+.section-left {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.boton-generar-cita {
+  position: absolute;
+  left: 5vh;
+  bottom: 10vh;
+}
+
+@media (min-width: 975px) {
+  .section-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+}

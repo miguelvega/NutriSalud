@@ -8,12 +8,14 @@ import { ConsultaSection } from "../ConsultaSection/ConsultaSection";
 import { MdArrowOutward } from "react-icons/md";
 import { useState } from "react";
 import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
+import "./Form.css";
+import { useAuth } from "../../../../context";
 
 export const Form = () => {
   // user de useAuth
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
+  const { user } = useAuth();
   const {
     control,
     handleSubmit,
@@ -23,14 +25,16 @@ export const Form = () => {
     defaultValues: {
       appointmentType: undefined,
       date: "",
-      nutritionist: "",
+      id_nutritionist: "",
       report: undefined,
       time: "",
     },
   });
 
   const onSubmit = (data: FormValues) => {
-    console.log(data);
+    const new_data = { ...data, id_patient: user.id };
+    console.log(new_data);
+
     setLoading(true);
     // comunicarse con backend para generar la cita falta esa lógica
     setTimeout(() => {
@@ -44,8 +48,8 @@ export const Form = () => {
       <div className="section-left">
         <NutricionistaList
           control={control}
-          name="nutritionist"
-          error={errors.nutritionist}
+          name="id_nutritionist"
+          error={errors.id_nutritionist}
         />
 
         <ReporteSection name="report" control={control} error={errors.report} />

@@ -1,4 +1,3 @@
-import React from "react";
 import "./InfoPersonalProgresos.css";
 
 export const InfoPersonalProgresos = ({

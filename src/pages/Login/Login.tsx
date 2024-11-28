@@ -5,12 +5,12 @@ import { useAuth } from "../../context";
 import { Navigate } from "react-router-dom";
 
 export const Login = () => {
-  const { isLoggedIn, userRole } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   if (isLoggedIn) {
-    if (userRole == "paciente") {
+    if (user.role == "paciente") {
       return <Navigate to="/" replace />;
-    } else if (userRole == "nutricionista") {
+    } else if (user.role == "nutricionista") {
       return <Navigate to="/inicio-medico" replace />;
     }
   }
