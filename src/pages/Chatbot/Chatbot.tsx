@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import "./Chatbot.css";
 import { VoiceRecognition } from "../../components";
-import { HfInference } from "@huggingface/inference";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useAuth } from "../../context";
 
 interface Message {
@@ -10,6 +10,10 @@ interface Message {
   text: string;
   image?: string; // El campo image es opcional
 }
+
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -25,77 +29,74 @@ const Chatbot = () => {
 
   const { user } = useAuth();
 
-  const fetchGroqResponse = async (message: string) => {
+  const fetchGeminiResponse = async (message: string) => {
     try {
       setIsLoading(true);
-      const response = await fetch(import.meta.env.VITE_GROQ_API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "llama3-8b-8192",
-          messages: [
-            {
-              role: "system",
-              content: `¡Hola! ${user.role} ${user.name} un gusto hablar contigo,soy tu asistente de NutriSalud, aquí para ayudarte con tu salud y nutrición. Por favor, responde de manera breve (máximo dos líneas). El usuario es un ${user.role} recuerdalo y debes de seguir la conversacion respecto a eso. Debes de saludarla por su nombre
-              Lo siguiente va a depender de si es un paciente debes de preguntarle acerca de consultas o dudas de la aplicación o sobre sus problemas nutricionales.
-              Si es un nutricionista debes de preguntarle si tiene alguna duda o si quiere saber algunas ultimas noticias acerca del mundo de la nutricion
-              `,
-            },
-            {
-              role: "user",
-              content: message,
-            },
-          ],
-        }),
+
+      // Inicializamos el modelo y el chat
+      const chat = model.startChat({
+        history: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: `¡Hola! ${user.role} ${user.name}, un gusto hablar contigo. Soy tu asistente de NutriSalud, aquí para ayudarte con tu salud y nutrición. Responde de manera breve (máximo dos líneas).`,
+              },
+            ],
+          },
+        ],
       });
 
-      if (!response.ok) {
-        throw new Error(`Error en la API: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      const responseMessage = data.choices[0]?.message?.content;
-
-      if (responseMessage) {
-        return responseMessage;
-      }
-
-      return "Hubo un problema con la respuesta.";
+      // Enviamos el mensaje del usuario
+      const result = await chat.sendMessage(message);
+      return result.response.text();
     } catch (error: any) {
-      console.error("Error al llamar a la API de Groq:", error);
+      console.error("Error al obtener respuesta de Gemini:", error);
       return `Error: ${error.message}`;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const processImage = async (imageFile: any) => {
-    const HF_TOKEN = import.meta.env.VITE_HUGGINGFACE_API_KEY; // Tu clave de Hugging Face
-    const inference = new HfInference(HF_TOKEN);
-
+  const processImage = async (imageFile: File) => {
     try {
-      // Convertir el archivo de imagen a un blob
+      // Convertir la imagen a Blob si es necesario
       const imageBlob =
         imageFile instanceof Blob
           ? imageFile
           : await (await fetch(imageFile)).blob();
 
-      // Hacer la inferencia
-      const response = await inference.imageToText({
-        data: imageBlob,
-        model: "Salesforce/blip-image-captioning-base",
-      });
+      // Convertir la imagen a base64
+      const base64Image = await convertToBase64(imageBlob);
 
-      console.log("Texto generado:", response);
-      return response.generated_text || "No se generó texto.";
+      // Aquí estamos creando una "parte" de imagen para enviar a la IA
+      const imagePart = {
+        inlineData: {
+          data: base64Image, // Base64 de la imagen
+          mimeType: imageBlob.type, // Tipo de la imagen
+        },
+      };
+
+      // Enviar la imagen a la IA con un prompt que pida una descripción
+      const prompt = "Describe esta imagen de la mejor manera posible.";
+      const result = await model.generateContent([prompt, imagePart]);
+
+      // Procesar la respuesta de la IA
+      return result.response.text() || "No se pudo generar texto.";
     } catch (error) {
       console.error("Error al procesar la imagen:", error);
-      return "No se pudo extraer el texto de la imagen.";
+      return "No se pudo extraer información de la imagen.";
     }
   };
+
+  // Función para convertir imagen Blob a Base64
+  const convertToBase64 = (blob: Blob): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
 
   const handleSend = async () => {
     if (input.trim()) {
@@ -103,7 +104,7 @@ const Chatbot = () => {
       setMessages((prev) => [...prev, userMessage]);
       setInput("");
 
-      const botResponse = await fetchGroqResponse(input);
+      const botResponse = await fetchGeminiResponse(input);
       const botMessage: Message = { sender: "bot", text: botResponse };
       setMessages((prev) => [...prev, botMessage]);
 
@@ -116,7 +117,7 @@ const Chatbot = () => {
       const userMessage: Message = { sender: "user", text: transcript };
       setMessages((prev) => [...prev, userMessage]);
 
-      const botResponse = await fetchGroqResponse(transcript);
+      const botResponse = await fetchGeminiResponse(transcript);
       const botMessage: Message = { sender: "bot", text: botResponse };
       setMessages((prev) => [...prev, botMessage]);
 
@@ -125,15 +126,24 @@ const Chatbot = () => {
   };
 
   const onDrop = async (acceptedFiles: File[]) => {
-    const image = acceptedFiles[0];
-    setImageUrl(URL.createObjectURL(image));
-    const caption = await processImage(image);
-    const botMessage: Message = {
-      sender: "bot",
-      text: `Descripción de la imagen: ${caption}`,
-      image: URL.createObjectURL(image), // Asignamos la imagen al mensaje del bot
-    };
-    setMessages((prev) => [...prev, botMessage]);
+    if (acceptedFiles.length > 0) {
+      const image = acceptedFiles[0];
+      setImageUrl(URL.createObjectURL(image)); // Mostrar la vista previa de la imagen cargada
+
+      // Procesar la imagen y obtener la respuesta generada por la IA
+      const caption = await processImage(image);
+
+      // Enviar el mensaje del bot con la descripción generada
+      const botMessage: Message = {
+        sender: "bot",
+        text: `Descripción de la imagen: ${caption}`, // Descripción generada por la IA
+        image: URL.createObjectURL(image), // Mostrar la imagen enviada
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+    } else {
+      console.error("No se cargó ninguna imagen válida.");
+    }
   };
 
   const { getRootProps, getInputProps } = useDropzone({
