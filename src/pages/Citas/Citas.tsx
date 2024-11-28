@@ -2,6 +2,8 @@ import "./Citas.css";
 import { RowCita } from "./RowCita/RowCita";
 
 export const Citas = () => {
+  // LLAMADA AL ENDPOINT DE /cita/usuario params: patient_id
+
   const data = [
     {
       id: 12312,

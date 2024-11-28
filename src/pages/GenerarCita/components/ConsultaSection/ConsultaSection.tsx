@@ -16,7 +16,7 @@ export const ConsultaSection = ({ control, errors }: Props) => (
     <div className="tipo-consulta">
       <h2>Tipo de Consulta:</h2>
       <Controller
-        name="appointmentType"
+        name="appointment_type"
         control={control}
         render={({ field }) => (
           <>

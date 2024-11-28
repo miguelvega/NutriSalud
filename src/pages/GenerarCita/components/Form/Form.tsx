@@ -23,24 +23,51 @@ export const Form = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
-      appointmentType: undefined,
+      appointment_type: undefined,
       date: "",
-      id_nutritionist: "",
+      nutritionist_id: "",
       report: undefined,
       time: "",
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    const new_data = { ...data, id_patient: user.id };
-    console.log(new_data);
+  const onSubmit = async (data: FormValues) => {
+    const new_data = {
+      ...data,
+      patient_id: user.id,
+    };
+    const { report, ...data_without_report } = new_data;
+    console.log(data_without_report);
 
     setLoading(true);
     // comunicarse con backend para generar la cita falta esa lógica
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const response = await fetch("http://localhost:8000/cita", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data_without_report), // Convierte el objeto a JSON
+      });
+
+      console.log(response);
+
+      if (!response.ok) {
+        throw new Error(
+          "Error en la solicitud, algunos horarios seguro ya han sido asignados"
+        );
+      }
+
+      const responseData = await response.json();
+      console.log(responseData); // Maneja la respuesta del servidor
       navigate("/citas"); // Redirige a la vista de resultado
-    }, 2000);
+      const messageToast = responseData.message;
+      console.log("mensaje de exito: ", messageToast);
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,8 +75,8 @@ export const Form = () => {
       <div className="section-left">
         <NutricionistaList
           control={control}
-          name="id_nutritionist"
-          error={errors.id_nutritionist}
+          name="nutritionist_id"
+          error={errors.nutritionist_id}
         />
 
         <ReporteSection name="report" control={control} error={errors.report} />
