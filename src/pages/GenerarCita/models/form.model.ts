@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const appointmentSchema = z.object({
-  id_nutritionist: z.string().min(1, "Debes seleccionar un nutricionista"),
-  appointmentType: z.enum(["Seguimiento", "Primera visita"]),
+  nutritionist_id: z.string().min(1, "Debes seleccionar un nutricionista"),
+  appointment_type: z.enum(["Seguimiento", "Primera visita"]),
   date: z.string().min(1, "La fecha es obligatoria"),
   time: z.string().min(1, "La hora es obligatoria"),
   report: z

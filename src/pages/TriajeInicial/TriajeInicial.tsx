@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TriajeInicial.css";
 import { TriajeForm } from "./components/TriajeForm/TriajeForm";

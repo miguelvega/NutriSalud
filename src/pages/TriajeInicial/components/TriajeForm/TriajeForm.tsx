@@ -11,10 +11,9 @@ export const TriajeForm: React.FC<TriajeFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
 
-    // Crear el objeto basado en el formulario
+    // Crear el objeto de datos sin el archivo
     const data: TriajeFormData = {
       historialMedico: formData.get("historialMedico") as File,
       sintomas: formData.get("sintomas") as string,
@@ -27,11 +26,10 @@ export const TriajeForm: React.FC<TriajeFormProps> = ({ onSubmit }) => {
       objetivoOtro: formData.get("objetivoOtro") as string,
     };
 
-    // Validar los datos usando Zod
+    // Validación con Zod
     const validation = TriajeFormSchema.safeParse(data);
 
     if (!validation.success) {
-      // Extraer errores y mostrarlos
       const newErrors: Record<string, string> = {};
       validation.error.errors.forEach((error) => {
         const key = error.path[0] as string;
@@ -41,10 +39,35 @@ export const TriajeForm: React.FC<TriajeFormProps> = ({ onSubmit }) => {
       return;
     }
 
-    // Si la validación pasa, enviar los datos y limpiar errores
+    // Si la validación pasa, enviar los datos (incluido el archivo)
     setErrors({});
-    onSubmit(validation.data);
-    e.currentTarget.reset(); // Opcional: Limpiar el formulario
+    const submitData = new FormData();
+    submitData.append("historialMedico", validation.data.historialMedico); // Asegúrate de enviar el archivo
+    submitData.append("sintomas", validation.data.sintomas);
+    submitData.append(
+      "habitosAlimenticios",
+      validation.data.habitosAlimenticios
+    );
+    //@ts-ignore
+    submitData.append("alimentosFavoritos", validation.data.alimentosFavoritos);
+    //@ts-ignore
+    submitData.append(
+      "alimentosNoTolerados",
+      validation.data.alimentosNoTolerados
+    );
+    //@ts-ignore
+    validation.data.objetivos.forEach((objetivo) =>
+      submitData.append("objetivo", objetivo)
+    );
+    //@ts-ignore
+    submitData.append("objetivoOtro", validation.data.objetivoOtro | "");
+
+    // Inspeccionar el contenido de FormData
+    for (let [key, value] of submitData.entries()) {
+      console.log(`${key}:`, value);
+    }
+    onSubmit(validation.data); // Este es el console.log o lo que desees hacer con los datos validados
+    e.currentTarget.reset(); // Limpiar el formulario
   };
 
   return (
