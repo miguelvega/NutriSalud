@@ -8,7 +8,7 @@ interface Props {
   hora: string;
   nombre_nutricionista: string;
   enlace_meet: string;
-  estado: string;
+  tipo: string;
 }
 
 export const RowCita = ({
@@ -17,7 +17,7 @@ export const RowCita = ({
   hora,
   nombre_nutricionista,
   enlace_meet,
-  estado,
+  tipo,
 }: Props) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -44,7 +44,7 @@ export const RowCita = ({
         <td className="cita-nutricionista">{nombre_nutricionista}</td>
         <td className="cita-enlace-meet">{enlace_meet}</td>
         <td className="cita-estado">
-          <span className="status-badge">{estado}</span>
+          <span className="status-badge">{tipo}</span>
         </td>
         <td className="cita-delete">
           <button
